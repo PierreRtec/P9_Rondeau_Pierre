@@ -1,0 +1,7 @@
+env
+__pycache__
+.vscode 
+*.csv
+*.jpg
+*flake8-rapport
+*.json
