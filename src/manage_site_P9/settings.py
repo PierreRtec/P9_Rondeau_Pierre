@@ -11,10 +11,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
-<<<<<<< HEAD
 import os
-=======
->>>>>>> e803522f7a10a37cdec6ad57e2b5db85a90e40a4
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -34,22 +31,13 @@ ALLOWED_HOSTS = []
 
 # Application definition
 INSTALLED_APPS = [
-<<<<<<< HEAD
-=======
-    'awebapp.apps',
-    'awebapp.apps.AwebappConfig',
-    'users.apps.UsersConfig',
->>>>>>> e803522f7a10a37cdec6ad57e2b5db85a90e40a4
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-<<<<<<< HEAD
     'awebapp',
-=======
->>>>>>> e803522f7a10a37cdec6ad57e2b5db85a90e40a4
 ]
 
 MIDDLEWARE = [
@@ -67,11 +55,7 @@ ROOT_URLCONF = 'manage_site_P9.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-<<<<<<< HEAD
         'DIRS': [os.path.join(BASE_DIR, 'templates')],
-=======
-        'DIRS': [BASE_DIR / '/templates' / 'awebapp/templates'],
->>>>>>> e803522f7a10a37cdec6ad57e2b5db85a90e40a4
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -120,7 +104,6 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
-<<<<<<< HEAD
 LANGUAGE_CODE = 'fr'
 
 TIME_ZONE = 'Europe/Paris'
@@ -129,14 +112,6 @@ USE_I18N = True
 
 USE_L10N = True
 
-=======
-LANGUAGE_CODE = 'fr-en'
-
-TIME_ZONE = 'UTC'
-
-USE_I18N = True
-
->>>>>>> e803522f7a10a37cdec6ad57e2b5db85a90e40a4
 USE_TZ = True
 
 
@@ -148,7 +123,6 @@ STATIC_URL = 'static/'
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
-<<<<<<< HEAD
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 STATIC_URL = '/static/'
@@ -163,6 +137,3 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 AUTH_USER_MODEL = 'awebapp.User'
 
 LOGIN_REDIRECT_URL = '/feed'
-=======
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
->>>>>>> e803522f7a10a37cdec6ad57e2b5db85a90e40a4

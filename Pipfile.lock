@@ -1,11 +1,7 @@
 {
     "_meta": {
         "hash": {
-<<<<<<< HEAD
             "sha256": "950afd6907d3f150240fa1f4023deef37c5cd067e5f1f7258fb986b1f853e518"
-=======
-            "sha256": "236fdb990f82c0dc5e7d005362b81fe62cb19ed5dcb14c83e0097ec66a79d6d6"
->>>>>>> e803522f7a10a37cdec6ad57e2b5db85a90e40a4
         },
         "pipfile-spec": 6,
         "requires": {
@@ -28,7 +24,6 @@
             "markers": "python_version >= '3.6'",
             "version": "==3.4.1"
         },
-<<<<<<< HEAD
         "beautifulsoup4": {
             "hashes": [
                 "sha256:9a315ce70049920ea4572a4055bc4bd700c940521d36fc858205ad4fcde149bf",
@@ -37,8 +32,6 @@
             "markers": "python_version >= '3.1'",
             "version": "==4.10.0"
         },
-=======
->>>>>>> e803522f7a10a37cdec6ad57e2b5db85a90e40a4
         "black": {
             "hashes": [
                 "sha256:77b80f693a569e2e527958459634f18df9b0ba2625ba4e0c2d5da5be42e6f2b3",
@@ -71,7 +64,6 @@
             "index": "pypi",
             "version": "==4.0.1"
         },
-<<<<<<< HEAD
         "django-bootstrap-v5": {
             "hashes": [
                 "sha256:220d905c2d64d25bdb1b53a20c5b1ba36c566e322fc310a11f66ac0e9cf466bc",
@@ -80,8 +72,6 @@
             "index": "pypi",
             "version": "==1.0.8"
         },
-=======
->>>>>>> e803522f7a10a37cdec6ad57e2b5db85a90e40a4
         "mypy-extensions": {
             "hashes": [
                 "sha256:090fedd75945a69ae91ce1303b5824f428daf5a028d2f6ab8a299250a846f15d",
@@ -104,7 +94,6 @@
             "markers": "python_version >= '3.7'",
             "version": "==2.4.1"
         },
-<<<<<<< HEAD
         "soupsieve": {
             "hashes": [
                 "sha256:1a3cca2617c6b38c0343ed661b1fa5de5637f257d4fe22bd9f1338010a1efefb",
@@ -113,8 +102,6 @@
             "markers": "python_version >= '3.6'",
             "version": "==2.3.1"
         },
-=======
->>>>>>> e803522f7a10a37cdec6ad57e2b5db85a90e40a4
         "sqlparse": {
             "hashes": [
                 "sha256:0c00730c74263a94e5a9919ade150dfc3b19c574389985446148402998287dae",
@@ -136,11 +123,7 @@
                 "sha256:4ca091dea149f945ec56afb48dae714f21e8692ef22a395223bcd328961b6a0e",
                 "sha256:7f001e5ac290a0c0401508864c7ec868be4e701886d5b573a9528ed3973d9d3b"
             ],
-<<<<<<< HEAD
             "markers": "python_version >= '3.6'",
-=======
-            "markers": "python_version >= '3.10'",
->>>>>>> e803522f7a10a37cdec6ad57e2b5db85a90e40a4
             "version": "==4.0.1"
         },
         "tzdata": {

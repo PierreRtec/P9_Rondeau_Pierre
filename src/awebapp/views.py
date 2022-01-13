@@ -4,11 +4,8 @@ from django.urls import reverse
 from django.views import generic
 from .models import Choice, Question
 from django.contrib.auth.models import User 
-<<<<<<< HEAD
 from django.template import context
 from django.contrib.auth import authenticate, login
-=======
->>>>>>> e803522f7a10a37cdec6ad57e2b5db85a90e40a4
 
 
 

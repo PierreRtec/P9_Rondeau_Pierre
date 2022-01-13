@@ -6,10 +6,7 @@ name = "pypi"
 [packages]
 django = "*"
 black = "*"
-<<<<<<< HEAD
 django-bootstrap-v5 = "*"
-=======
->>>>>>> e803522f7a10a37cdec6ad57e2b5db85a90e40a4
 
 [dev-packages]
 

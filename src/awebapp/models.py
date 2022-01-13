@@ -2,7 +2,6 @@ from django.contrib import admin
 from django.db import models
 import datetime
 from django.utils import timezone
-<<<<<<< HEAD
 from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 
@@ -22,9 +21,6 @@ class UserFollows(models.Model):
 
     def __str__(self):
         return 'Suivis: ' + str(self.user) + " > " + str(self.followed_user)
-=======
-
->>>>>>> e803522f7a10a37cdec6ad57e2b5db85a90e40a4
 
 class Person(models.Model):
     name = models.CharField(max_length=130)

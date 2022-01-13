@@ -10,15 +10,11 @@ urlpatterns = [
     path("<int:question_id>/vote/", views.vote, name="vote"),
     path("homepage/", views.homepage, name="homepage"),
     path("signup/", views.signup, name="signup"),
-<<<<<<< HEAD
     path("base/", views.base, name="base"),
     path("login/", views.login, name="login"),
     path("logout/", views.logout, name="logout"),
     path("subscrip/", views.subscrip, name="subscrip"),
 
-=======
-    path("navbase/", views.navbase, name="navbase"),
->>>>>>> e803522f7a10a37cdec6ad57e2b5db85a90e40a4
     # path('page3/', views.p3, name='p3'),
     # path('page4/', views.p4, name='p4'),
     # path('page5/', views.p5, name='p5'),
