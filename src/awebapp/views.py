@@ -64,5 +64,9 @@ def subscrip(request):
 
 def signup(request):
     if request.method == "POST":
-        pass
+        username = request.POST.get("username")
+        password = request.POST.get("password")
+        user = authenticate(username=username, password=password)
+        login(request, user)
+        return redirect("homepage")
     return render(request, "users/signup.html")

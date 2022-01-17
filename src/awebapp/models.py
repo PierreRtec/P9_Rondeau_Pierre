@@ -3,7 +3,8 @@ from django.db import models
 import datetime
 from django.utils import timezone
 from django.conf import settings
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser, User
+
 
 class User(AbstractUser):
     pass
