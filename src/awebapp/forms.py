@@ -6,10 +6,10 @@ from awebapp.models import User, UserFollows
 class UserForm(ModelForm):
     class Meta:
         model = User
-        fields = ['username', 'password', 'first_name']
+        fields = ['username', 'password', 'email']
         widgets = {
             'password': forms.PasswordInput(),
-            'first_name': forms.PasswordInput(),
+            'email': forms.EmailInput(),
         }
 
 
