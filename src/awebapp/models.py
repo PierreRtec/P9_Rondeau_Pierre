@@ -3,26 +3,55 @@ from django.db import models
 import datetime
 from django.utils import timezone
 from django.conf import settings
-from django.contrib.auth.models import AbstractUser, User
+from django.contrib.auth.models import AbstractUser
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 
 class User(AbstractUser):
+    """User model."""
+
+    email = models.EmailField(max_length=255, unique=True)
+
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = []
+
+    # exemple pour makemigrations et migrate une nouvelle colonne dans la BDD
+    n_col = models.IntegerField(default=0)
+
+    # exemple pour supprimer une colonne
+    """
+    username = None
+    is_superuser = None
+    """
+
+class Ticket(models.Model):
+    # Your Ticket model definition goes here
     pass
 
 
-class UserFollows(models.Model):
-    objects = models.Manager()
+class Review(models.Model):
+    ticket = models.ForeignKey(to=Ticket, on_delete=models.CASCADE)
+    rating = models.PositiveSmallIntegerField(
+        # validates that rating must be between 0 and 5
+        validators=[MinValueValidator(0), MaxValueValidator(5)])
+    headline = models.CharField(max_length=128)
+    body = models.CharField(max_length=8192, blank=True)
     user = models.ForeignKey(
-        to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='following')
-    followed_user = models.ForeignKey(
-        to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='following_by')
-    confirm = models.CharField(max_length=128, blank=True)
+        to=User, on_delete=models.CASCADE)
+    time_created = models.DateTimeField(auto_now_add=True)
+
+
+class UserFollows(models.Model):
+    # Your UserFollows model definition goes here
+
+    followed_user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='followed_by')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="follow")
 
     class Meta:
+        # ensures we don't get multiple UserFollows instances
+        # for unique user-user_followed pairs
         unique_together = ('user', 'followed_user', )
-
-    def __str__(self):
-        return 'Suivis: ' + str(self.user) + " > " + str(self.followed_user)
+    
 
 class Person(models.Model):
     name = models.CharField(max_length=130)

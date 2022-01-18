@@ -66,7 +66,7 @@ def signup(request):
     if request.method == "POST":
         email = request.POST.get("email")
         password = request.POST.get("password")
-        user = authenticate(email=email, password=password)
+        user=User.objects.create(email=email, password=password)
         login(request, user)
         return redirect("/awebapp/homepage")
     return render(request, "users/signup.html")
