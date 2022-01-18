@@ -70,4 +70,3 @@ def signup(request):
         login(request, user)
         return redirect("/awebapp/homepage")
     return render(request, "users/signup.html")
-# test
