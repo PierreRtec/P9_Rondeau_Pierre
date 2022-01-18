@@ -9,6 +9,7 @@ from django.contrib.auth.models import AbstractUser, User
 class User(AbstractUser):
     pass
 
+
 class UserFollows(models.Model):
     objects = models.Manager()
     user = models.ForeignKey(

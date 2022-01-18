@@ -53,7 +53,7 @@ def homepage(request):
 def base(request):
     return render(request, "awebapp/base.html")
 
-def login(request):
+def auth_login(request):
     return render(request, "users/login.html")
 
 def logout(request):
