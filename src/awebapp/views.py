@@ -54,6 +54,12 @@ def base(request):
     return render(request, "awebapp/base.html")
 
 def auth_login(request):
+    if request.method == "POST":
+        email = request.POST.get("email")
+        password = request.POST.get("password")
+        user = authenticate(email=email, password=password)
+        login(request, user)
+        return redirect("/awebapp/homepage")
     return render(request, "users/login.html")
 
 def logout(request):
@@ -64,9 +70,9 @@ def subscrip(request):
 
 def signup(request):
     if request.method == "POST":
-        email = request.POST.get("email")
+        username = request.POST.get("username")
         password = request.POST.get("password")
-        user=User.objects.create(email=email, password=password)
+        user=User.objects.create(username=username, password=password)
         login(request, user)
-        return redirect("/awebapp/homepage")
+        return redirect("/awebapp/homepage")    
     return render(request, "users/signup.html")
