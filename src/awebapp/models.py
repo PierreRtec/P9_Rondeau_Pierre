@@ -5,6 +5,9 @@ from django.utils import timezone
 from manage_site_P9 import settings
 from django.contrib.auth.models import AbstractUser, User
 from django.core.validators import MinValueValidator, MaxValueValidator
+from django.db import IntegrityError
+
+
 
 
 class User(AbstractUser):
@@ -13,7 +16,6 @@ class User(AbstractUser):
     username = models.CharField(max_length=255, unique=True, default='')
     password = models.CharField(max_length=255, unique=False, default='')
 
-    PASSWORD_FIELD = 'password'
     REQUIRED_FIELDS = []
 
     # exemple pour makemigrations et migrate une nouvelle colonne dans la BDD
@@ -24,6 +26,7 @@ class User(AbstractUser):
     username = None
     is_superuser = None
     """
+
 
 class Ticket(models.Model):
     pass
@@ -41,12 +44,14 @@ class Review(models.Model):
 
 
 class UserFollows(models.Model):
-
-    followed_user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='followed_by')
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="follow")
+    user = models.ForeignKey(
+        to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='following')
+    followed_user = models.ForeignKey(
+        to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='followed_by')
 
     class Meta:
-        unique_together = ('user', 'followed_user', )
+        unique_together = ('user', 'followed_user',)
+        pass
     
 
 class Person(models.Model):
