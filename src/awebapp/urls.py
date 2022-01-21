@@ -14,8 +14,7 @@ urlpatterns = [
     path("login/", views.auth_login, name="login"),
     path("logout/", views.logout, name="logout"),
     path("subscrip/", views.subscrip, name="subscrip"),
-
-    # path('page3/', views.p3, name='p3'),
+    path('flux/', views.flux, name='flux'),
     # path('page4/', views.p4, name='p4'),
     # path('page5/', views.p5, name='p5'),
     # path('page6/', views.p6, name='p6'),

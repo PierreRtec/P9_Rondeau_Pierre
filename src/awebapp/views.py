@@ -6,8 +6,7 @@ from .models import Choice, Question
 from django.contrib.auth.models import User 
 from django.contrib.auth import authenticate, login
 from awebapp.models import User
-
-
+from django.contrib.auth.decorators import login_required
 
 
 class IndexView(generic.ListView):
@@ -62,6 +61,10 @@ def auth_login(request):
         return redirect("/awebapp/homepage")
     return render(request, "users/login.html")
 
+
+        
+
+
 def logout(request):
     return render(request, "users/logout.html")
 
@@ -77,3 +80,6 @@ def signup(request):
         login(request, user)
         return redirect("/awebapp/homepage")    
     return render(request, "users/signup.html")
+
+def flux(request):
+    return render(request, "reviews/flux.html")
