@@ -4,9 +4,9 @@ from django.urls import reverse
 from django.views import generic
 from .models import Choice, Question
 from django.contrib.auth.models import User 
-from django.template import context
 from django.contrib.auth import authenticate, login
 from awebapp.models import User
+
 
 
 
@@ -69,6 +69,7 @@ def subscrip(request):
     return render(request, "users/subscrip.html")
 
 def signup(request):
+    
     if request.method == "POST":
         username = request.POST.get("username")
         password = request.POST.get("password")
