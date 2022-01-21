@@ -22,6 +22,7 @@
         <h2>Connectez-vous</h2>
         <form id="form_hp" method ="post">
             <div class="form-group input-group">
+              {% csrf_token %}
               <div class="input-group-prepend">
              </div>
                 <input name="username" class="form-control" placeholder="Nom utilisateur">
@@ -40,9 +41,8 @@
             </div>
             </div> <!-- form-group// -->                                      
             <div class="form-group">
-                <button type="submit" class="btn btn-primary btn-block">Créer mon compte</button>
-            </div> <!-- form-group// -->      
-            <p class="text-center">Vous avez déjà un compte ?<a href="http://127.0.0.1:8000/awebapp/login">Se connecter</a> </p>                                                                 
+                <button type="submit" class="btn btn-primary btn-block">Connectez-vous</button>
+            </div> <!-- form-group// -->                                                                 
         </form>            
       </div>
     </div>

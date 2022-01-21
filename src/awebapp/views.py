@@ -48,6 +48,12 @@ def vote(request, question_id):
         return HttpResponseRedirect(reverse("awebapp:results", args=(question.id,)))
 
 def homepage(request):
+    if request.method == "POST":
+        username = request.POST.get("username")
+        password = request.POST.get("password")
+        user = authenticate(username=username, password=password)
+        login(request, user)
+        return redirect("/awebapp/flux")
     return render(request, "awebapp/homepage.html")
 
 def base(request):
