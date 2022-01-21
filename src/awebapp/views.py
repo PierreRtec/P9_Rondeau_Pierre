@@ -4,7 +4,7 @@ from django.urls import reverse
 from django.views import generic
 from .models import Choice, Question
 from django.contrib.auth.models import User 
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from awebapp.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.hashers import make_password
@@ -69,8 +69,8 @@ def auth_login(request):
     return render(request, "users/login.html")
 
 
-
-def logout(request):
+def auth_logout(request):
+    logout(request)
     return render(request, "users/logout.html")
 
 def subscrip(request):
