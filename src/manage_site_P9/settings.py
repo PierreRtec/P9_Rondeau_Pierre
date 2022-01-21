@@ -93,6 +93,8 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+AUTH_LOGIN = 'awebapp.auth_login'
+
 AUTH_USER_MODEL = 'awebapp.User'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

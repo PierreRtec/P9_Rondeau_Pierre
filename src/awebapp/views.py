@@ -7,6 +7,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 from awebapp.models import User
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.hashers import make_password
 
 
 class IndexView(generic.ListView):
@@ -74,7 +75,7 @@ def signup(request):
     if request.method == "POST":
         username = request.POST.get("username")
         password = request.POST.get("password")
-        user=User.objects.create(username=username, password=password)
+        user=User.objects.create(username=username, password= make_password(password))
         login(request, user)
         return redirect("/awebapp/homepage")    
     return render(request, "users/signup.html")
