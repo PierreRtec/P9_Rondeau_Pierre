@@ -79,5 +79,6 @@ def signup(request):
         return redirect("/awebapp/homepage")    
     return render(request, "users/signup.html")
 
+@login_required
 def flux(request):
     return render(request, "reviews/flux.html")
