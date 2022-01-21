@@ -54,9 +54,9 @@ def base(request):
 
 def auth_login(request):
     if request.method == "POST":
-        email = request.POST.get("email")
+        username = request.POST.get("username")
         password = request.POST.get("password")
-        user = authenticate(email=email, password=password)
+        user = authenticate(username=username, password=password)
         login(request, user)
         return redirect("/awebapp/flux")
     return render(request, "users/login.html")
