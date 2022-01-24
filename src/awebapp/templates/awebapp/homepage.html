@@ -19,31 +19,31 @@
 <body>
 <div class="container-fluid">
   <div class="row">
-    <div class="col-md-6 col-md-offset-3">
-      <div>
+    <div class="col-md-6">
+      <div align="center">
         <h2>Connectez-vous</h2>
         <form id="form_hp" method ="post">
-            <div class="form-group input-group">
+            <div class="form-group input-group w-50">
               {% csrf_token %}
               <div class="input-group-prepend">
              </div>
-                <input name="username" class="form-control" placeholder="Nom utilisateur">
+                <input name="username" class="form-control" placeholder="Nom utilisateur" type="username" style="text-align:center;">
             </div> <!-- form-group// -->
             <div class="form-group input-group">
-              <div class="input-group-prepend">
+              <div class="p-2 input-group-prepend">
             </div>
           </div> <!-- form-group end.// -->
-            <div class="form-group input-group">
+            <div class="form-group input-group w-50">
               <div class="input-group-prepend">
             </div>
-                <input name="password" class="form-control" placeholder="Mot de passe" type="password">
+                <input name="password" class="form-control" placeholder="Mot de passe" type="password" style="text-align:center;">
             </div> <!-- form-group// -->
             <div class="form-group input-group">
-              <div class="input-group-prepend">
+              <div class="p-2 input-group-prepend">
             </div>
-            </div> <!-- form-group// -->                                      
+            </div> <!-- form-group// -->
             <div class="form-group">
-                <button type="submit" class="btn btn-primary btn-block">Connectez-vous</button>
+                <button type="submit" class="btn btn-primary">Connectez-vous</button>
             </div> <!-- form-group// -->                                                                 
         </form>            
       </div>
@@ -52,10 +52,10 @@
         <div class="col d-flex align-items-start">
             <svg class="bi" width="1em" height="1em"><use xlink:href="#toggles2"></use></svg>
           </div>
-          <div>
+          <div align="center">
             <h2>Inscrivez-vous</h2>
             <p>Cliquez sur le bouton pour vous inscrire</p>
-            <a href="http://127.0.0.1:8000/awebapp/signup" class="btn btn-primary">
+            <a href="http://127.0.0.1:8000/awebapp/signup" class="btn btn-primary" align="center">
               S'inscrire
             </a>
           </div>
