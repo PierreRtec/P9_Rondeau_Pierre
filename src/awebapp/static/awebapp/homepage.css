@@ -3,9 +3,10 @@ li a {
 }
 
 body {
-  background-color: #8BC6EC;
-  background-image: linear-gradient(355deg, #8BC6EC 0%, #9599E2 50%, #ffffff 100%);
-  size: auto;
+  background-color: #ee5522;
+  background: white url("images/cool-background.png") no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
 }
 
 div.container {
@@ -24,3 +25,4 @@ div.container {
     width: 100%;
   }
 }
+

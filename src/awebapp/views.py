@@ -82,7 +82,7 @@ def signup(request):
         username = request.POST.get("username")
         password = request.POST.get("password")
         user=User.objects.create(username=username, password= make_password(password))
-        login(request, user)
+        # login(request, user)
         return redirect("/awebapp/homepage")    
     return render(request, "users/signup.html")
 
