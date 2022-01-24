@@ -32,7 +32,6 @@ class User(AbstractUser):
     """
     pass
 
-
 class Ticket(models.Model):
     pass
 

@@ -77,7 +77,6 @@ def subscrip(request):
     return render(request, "users/subscrip.html")
 
 def signup(request):
-    
     if request.method == "POST":
         username = request.POST.get("username")
         password = request.POST.get("password")
