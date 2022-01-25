@@ -1,5 +1,12 @@
 body nav {
-    font-size: 20px;
-    font-weight: bold;
+    font-size: auto;
+    /*font-weight: bold;*/
 }
 
+body .navbar-light .navbar-nav .nav-link.active {
+    color: rgba(255, 255, 255, 0.9)!important;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: rgba(255, 255, 255, 0.9)!important;
+}

@@ -1,0 +1,11 @@
+body {
+    background-color: #ee5522;
+    background: white url("images/bgforfeed.png") no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+  }
+
+body .navbar-light .navbar-nav .nav-link.active {
+    color: rgba(255, 255, 255, 0.9);
+}
+

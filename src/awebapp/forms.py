@@ -19,3 +19,7 @@ class UserFollowsForm(ModelForm):
     class Meta:
         model = UserFollows
         fields = ['confirm']
+
+"""
+crea des forms adaptés aux modèles / view
+"""

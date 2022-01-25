@@ -6,30 +6,7 @@ from manage_site_P9 import settings
 from django.contrib.auth.models import AbstractUser, User
 from django.core.validators import MinValueValidator, MaxValueValidator
 
-
-
-
-
 class User(AbstractUser):
-    """User model."""
-    """
-    user = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
-        on_delete=models.CASCADE,
-    )
-
-    username = models.CharField(max_length=255, unique=True, default='')
-    password = models.CharField(max_length=255, unique=False, default='')
-
-    REQUIRED_FIELDS = []
-    UNIQUE_CONSTRAINTS = []
-    # exemple pour makemigrations et migrate une nouvelle colonne dans la BDD
-    n_col = models.IntegerField(default=0)
-
-    # exemple pour supprimer une colonne
-    # username = None
-    # is_superuser = None
-    """
     pass
 
 class Ticket(models.Model):

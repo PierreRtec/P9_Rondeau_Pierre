@@ -80,11 +80,23 @@ def signup(request):
     if request.method == "POST":
         username = request.POST.get("username")
         password = request.POST.get("password")
-        user=User.objects.create(username=username, password= make_password(password))
-        # login(request, user)
-        return redirect("/awebapp/homepage")    
+        if password == request.POST.get("password_confirm"):
+            user=User.objects.create(username=username, password= make_password(password))
+            return redirect("/awebapp/login") 
     return render(request, "users/signup.html")
 
 @login_required
 def flux(request):
     return render(request, "reviews/flux.html")
+
+@login_required
+def posts(request):
+    return render(request, "reviews/posts.html")
+
+
+"""
+créer une méthode pour les posts 
+1. Créa critique (ticket = review)
+2. Commentaire (demander) = critique sur une review
+3. Commencer à faire le flux 
+"""
