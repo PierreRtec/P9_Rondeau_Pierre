@@ -9,7 +9,7 @@ body {
   background-size: cover;
 }
 
-div.container {
+div.container-fluid {
   animation-duration: 1s;
   animation-name: slidein;
 }
