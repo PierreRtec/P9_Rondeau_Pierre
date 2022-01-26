@@ -2,7 +2,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render, redirect
 from django.urls import reverse
 from django.views import generic
-from django.contrib.auth.models import User 
+from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from awebapp.models import User
 from django.contrib.auth.decorators import login_required
@@ -20,8 +20,10 @@ def homepage(request):
         return redirect("/awebapp/flux")
     return render(request, "awebapp/homepage.html")
 
+
 def base(request):
     return render(request, "awebapp/base.html")
+
 
 def auth_login(request):
     if request.method == "POST":
@@ -37,13 +39,16 @@ def auth_logout(request):
     logout(request)
     return render(request, "users/logout.html")
 
+
 def signup(request):
     if request.method == "POST":
         username = request.POST.get("username")
         password = request.POST.get("password")
         if password == request.POST.get("password_confirm"):
-            user=User.objects.create(username=username, password= make_password(password))
-            return redirect("/awebapp/login") 
+            user = User.objects.create(
+                username=username, password=make_password(password)
+            )
+            return redirect("/awebapp/login")
     return render(request, "users/signup.html")
 
 
@@ -53,15 +58,20 @@ def flux(request):
     reviews = Review.objects.all
     return render(request, "flux.html", {"tickets": tickets, "reviews": reviews})
 
+
 @login_required
 def posts(request):
     return render(request, "reviews/posts.html")
+
 
 @login_required
 def abos(request):
     following = UserFollows.objects.filter(user=request.user)
     followers = UserFollows.objects.filter(followed_user=request.user)
-    return render(request, "abos.html", {"following": following, "followers": followers})
+    return render(
+        request, "abos.html", {"following": following, "followers": followers}
+    )
+
 
 """
 @login_required
