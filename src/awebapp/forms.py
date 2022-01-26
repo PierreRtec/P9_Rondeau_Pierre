@@ -1,51 +1,38 @@
 from django import forms
 from django.forms import ModelForm
 from awebapp.models import User, UserFollows, Ticket, Review
-from django.core import validators
-from django.forms import CharField
+from django.core.validators import MaxValueValidator
 
-class UserForm(ModelForm):
+class User(forms.Form):
 
     class Meta:
         model = User
-        fields = [
-            "username",
-            "password",
-            "password_confirmation",
-        ]
+        fields = ["username", "password", "password_confirmation"]
         widgets = {
             "password": forms.PasswordInput(),
             "password_confirm": forms.PasswordInput(),
         }
 
 
-class UserFollowsForm(ModelForm):
+class UserFollowsForm(forms.Form):
     class Meta:
         model = UserFollows
-        fields = ["confirm"]
-        widgets = {
-            "password": forms.PasswordInput(),
-            "email": forms.EmailInput(),
-        }
+        fields = ['user', 'followed_user']
+        labels = {'followed_user': 'Utilisateur à suivre :'}
+        exclude = ['user']
 
 
-class UploadTicketForm(forms.ModelForm):
+
+class UploadTicketForm(forms.Form):
     class Meta:
         model = Ticket
         fields = ["title", "description", "image", "user"]
-        widgets = {
-            "password": forms.PasswordInput(),
-            "email": forms.EmailInput(),
-        }
 
 
-class UploadReviewForm(forms.ModelForm):
+
+class UploadReviewForm(forms.Form):
     class Meta:
         model = Review
+        rating = forms.ChoiceField(widget=forms.RadioSelect, choices=[(note, note) for note in range(1, 6)])
         fields = ["headline", "body", "rating", "ticket", "user"]
-        widgets = {
-            "headline": forms.PasswordInput(),
-            "body": forms.EmailInput(),
-            "rating": forms.RatingInput(),
-            "ticket": forms.TicketInput(),
-        }
+

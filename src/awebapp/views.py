@@ -56,7 +56,7 @@ def signup(request):
 def flux(request):
     tickets = Ticket.objects.all
     reviews = Review.objects.all
-    return render(request, "flux.html", {"tickets": tickets, "reviews": reviews})
+    return render(request, "reviews/flux.html", {"tickets": tickets, "reviews": reviews})
 
 
 @login_required
@@ -69,11 +69,11 @@ def abos(request):
     following = UserFollows.objects.filter(user=request.user)
     followers = UserFollows.objects.filter(followed_user=request.user)
     return render(
-        request, "abos.html", {"following": following, "followers": followers}
+        request, "reviews/abos.html", {"following": following, "followers": followers}
     )
 
 
-"""
+
 @login_required
 def update_review(request, review_id):
     if request.method == "POST":
@@ -201,4 +201,3 @@ def view_posts(request):
     reviews = Review.objects.filter(user=request.user)
     tickets = Ticket.objects.filter(user=request.user)
     return render(request, "view-posts.html", {"reviews": reviews, "tickets": tickets})
-"""
