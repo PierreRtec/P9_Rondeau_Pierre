@@ -6,6 +6,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 {% endblock %}
 {% block content %}
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,12 +14,57 @@
     <link rel="stylesheet" type="text/css" href="{% static 'awebapp/belognav.css' %}">
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-  <title>{% block title %}LITReview Accueil{% endblock %}</title>
+  <title>{% block title %}LITReview Flux{% endblock %}</title>
   </head>
 <body>
-<div class="container-fluid">
-<div class="feed text-center">
-    <p>Salut {{ request.user }}</p>
-</div>
-</div>
+<body>
+  <main role="main" class="container">
+    <div class="row justify-content-md-center">
+        <div class="col col-lg-3">
+            <a class="btn btn-lg btn-primary" href="#" role="button">Demander une critique</a>
+        </div>
+        <div class="col-md-auto">
+            <a class="btn btn-lg btn-primary" href="#" role="button">Créer une critique</a>        
+        </div>
+        </div>
+        <!--Premier bloc avec une critique publiée de l'utilisateur connecté-->
+    <div class="my-3 p-3 bg-white rounded box-shadow">
+        <h6 class="border-bottom border-gray pb-2 mb-0">Vous avez publié une critique</h6>
+        <div class="media text-muted pt-3">
+          <p class="media-body pb-3 mb-3 small lh-125 border-bottom border-black">__</p>
+        </div>
+        <small class="d-block text-right mt-3">
+        <a href="#">click</a>
+        </small>
+    </div>
+        <!--Second bloc avec une demande de critique d'un autre user-->
+    <div class="my-3 p-3 bg-white rounded box-shadow">
+        <h6 class="border-bottom border-gray pb-2 mb-0">user a demandé une critique + ajouter date de la publication</h6>
+        <div class="media text-muted pt-3">
+            <p class="media-body pb-3 mb-3 small lh-125 border-bottom border-black">__</p>
+        </div>
+        <div class="col-md-auto">
+            <a class="btn btn-lg btn-primary" href="#" role="button">Créer une critique</a>        
+        </div>
+    </div>
+        <!--Troisième bloc avec une demande de critique d'un autre user déjà résolue-->
+    <div class="my-3 p-3 bg-white rounded box-shadow">
+        <h6 class="border-bottom border-gray pb-2 mb-0">user a demandé une critique + ajouter date de la publication</h6>
+        <div class="media text-muted pt-3">
+            <p class="media-body pb-3 mb-3 small lh-125 border-bottom border-black">__</p>
+        </div>
+        <!-- trouver moyen de bloquer les critiques aux tickets si un user a déjà répondu-->
+    </div>
+        <!--4eme bloc avis + ticket post review-->
+    <div class="my-3 p-3 bg-white rounded box-shadow">
+        <h6 class="border-bottom border-gray pb-2 mb-0">user a poster une critique</h6>
+        <div class="media text-muted pt-3">
+            <p class="media-body pb-3 mb-3 small lh-125 border-bottom border-black">__</p>
+        </div>
+    </div>
+    </div>
+  </main>
+</body>
+</html>
 {% endblock %}
+
