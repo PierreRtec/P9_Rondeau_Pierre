@@ -26,7 +26,6 @@ class UserFollowsForm(ModelForm):
         widgets = {
             "password": forms.PasswordInput(),
             "email": forms.EmailInput(),
-            "password_confirm": forms.PasswordInput(),
         }
 
 
@@ -37,7 +36,6 @@ class UploadTicketForm(forms.ModelForm):
         widgets = {
             "password": forms.PasswordInput(),
             "email": forms.EmailInput(),
-            "password_confirm": forms.PasswordInput(),
         }
 
 
