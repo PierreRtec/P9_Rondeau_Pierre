@@ -10,80 +10,130 @@ import django.utils.timezone
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('awebapp', '0001_initial'),
+        ("awebapp", "0001_initial"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Review',
+            name="Review",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('rating', models.PositiveSmallIntegerField(validators=[django.core.validators.MinValueValidator(0), django.core.validators.MaxValueValidator(5)])),
-                ('headline', models.CharField(max_length=128)),
-                ('body', models.TextField(blank=True, max_length=8192)),
-                ('time_created', models.DateTimeField(auto_now_add=True)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "rating",
+                    models.PositiveSmallIntegerField(
+                        validators=[
+                            django.core.validators.MinValueValidator(0),
+                            django.core.validators.MaxValueValidator(5),
+                        ]
+                    ),
+                ),
+                ("headline", models.CharField(max_length=128)),
+                ("body", models.TextField(blank=True, max_length=8192)),
+                ("time_created", models.DateTimeField(auto_now_add=True)),
             ],
         ),
         migrations.CreateModel(
-            name='UserFollows',
+            name="UserFollows",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('followed_user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='followed_user', to=settings.AUTH_USER_MODEL)),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='followed_by', to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "followed_user",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="followed_user",
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
+                (
+                    "user",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="followed_by",
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
             options={
-                'unique_together': {('user', 'followed_user')},
+                "unique_together": {("user", "followed_user")},
             },
         ),
         migrations.RemoveField(
-            model_name='choice',
-            name='question',
+            model_name="choice",
+            name="question",
         ),
         migrations.DeleteModel(
-            name='Person',
+            name="Person",
         ),
         migrations.AddField(
-            model_name='ticket',
-            name='description',
+            model_name="ticket",
+            name="description",
             field=models.TextField(blank=True, max_length=2048),
         ),
         migrations.AddField(
-            model_name='ticket',
-            name='image',
-            field=models.ImageField(blank=True, null=True, upload_to='images/'),
+            model_name="ticket",
+            name="image",
+            field=models.ImageField(blank=True, null=True, upload_to="images/"),
         ),
         migrations.AddField(
-            model_name='ticket',
-            name='time_created',
-            field=models.DateTimeField(auto_now_add=True, default=django.utils.timezone.now),
+            model_name="ticket",
+            name="time_created",
+            field=models.DateTimeField(
+                auto_now_add=True, default=django.utils.timezone.now
+            ),
             preserve_default=False,
         ),
         migrations.AddField(
-            model_name='ticket',
-            name='title',
-            field=models.CharField(default='', max_length=128),
+            model_name="ticket",
+            name="title",
+            field=models.CharField(default="", max_length=128),
             preserve_default=False,
         ),
         migrations.AddField(
-            model_name='ticket',
-            name='user',
-            field=models.ForeignKey(default='', on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL),
+            model_name="ticket",
+            name="user",
+            field=models.ForeignKey(
+                default="",
+                on_delete=django.db.models.deletion.CASCADE,
+                to=settings.AUTH_USER_MODEL,
+            ),
             preserve_default=False,
         ),
         migrations.DeleteModel(
-            name='Choice',
+            name="Choice",
         ),
         migrations.DeleteModel(
-            name='Question',
+            name="Question",
         ),
         migrations.AddField(
-            model_name='review',
-            name='ticket',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='review', to='awebapp.ticket'),
+            model_name="review",
+            name="ticket",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="review",
+                to="awebapp.ticket",
+            ),
         ),
         migrations.AddField(
-            model_name='review',
-            name='user',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL),
+            model_name="review",
+            name="user",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL
+            ),
         ),
     ]

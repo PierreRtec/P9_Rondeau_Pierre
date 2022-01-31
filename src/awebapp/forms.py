@@ -3,8 +3,8 @@ from django.forms import ModelForm
 from awebapp.models import User, UserFollows, Ticket, Review
 from django.core.validators import MaxValueValidator
 
-class User(forms.Form):
 
+class User(forms.Form):
     class Meta:
         model = User
         fields = ["username", "password", "password_confirmation"]
@@ -17,10 +17,9 @@ class User(forms.Form):
 class UserFollowsForm(forms.Form):
     class Meta:
         model = UserFollows
-        fields = ['user', 'followed_user']
-        labels = {'followed_user': 'Utilisateur à suivre :'}
-        exclude = ['user']
-
+        fields = ["user", "followed_user"]
+        labels = {"followed_user": "Utilisateur à suivre :"}
+        exclude = ["user"]
 
 
 class UploadTicketForm(forms.Form):
@@ -29,10 +28,10 @@ class UploadTicketForm(forms.Form):
         fields = ["title", "description", "image", "user"]
 
 
-
 class UploadReviewForm(forms.Form):
     class Meta:
         model = Review
-        rating = forms.ChoiceField(widget=forms.RadioSelect, choices=[(note, note) for note in range(1, 6)])
+        rating = forms.ChoiceField(
+            widget=forms.RadioSelect, choices=[(note, note) for note in range(1, 6)]
+        )
         fields = ["headline", "body", "rating", "ticket", "user"]
-
