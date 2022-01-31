@@ -1,0 +1,6 @@
+body {
+    background-color: #ee5522;
+    background: white url("images/cool-posts.png") no-repeat!important;
+    background-attachment: fixed;
+    background-size: cover;
+  }

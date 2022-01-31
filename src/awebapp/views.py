@@ -72,47 +72,6 @@ def abos(request):
         request, "reviews/abos.html", {"following": following, "followers": followers}
     )
 
-
-
-@login_required
-def update_review(request, review_id):
-    if request.method == "POST":
-        review_update = Review.objects.get(id=review_id)
-        review_update.headline = request.POST["headline"]
-        review_update.body = request.POST["body"]
-        review_update.rating = request.POST["rating"]
-        review_update.save()
-        return HttpResponseRedirect(reverse("view-posts"))
-    else:
-        review = Review.objects.get(id=review_id)
-        ticket = Ticket.objects.get(id=review.ticket.id)
-        form_review = UploadReviewForm(initial={"user": request.user,
-                                                "ticket": review.ticket,
-                                                "headline": review.headline,
-                                                "body": review.body,
-                                                "rating": review.rating,
-                                                })
-        return render(request, "update-review.html", {"review": review, "form_review": form_review, "ticket": ticket})
-
-
-@login_required
-def update_ticket(request, ticket_id):
-    ticket = Ticket.objects.get(id=ticket_id)
-    if request.method == "POST":
-        ticket_update = Ticket.objects.get(id=ticket_id)
-        form_ticket = UploadTicketForm(request.POST, request.FILES, instance=ticket_update)
-        if form_ticket.is_valid():
-            form_ticket.save()
-            return HttpResponseRedirect(reverse("view-posts"))
-    else:
-        form_ticket = UploadTicketForm(initial={"user": request.user,
-                                                "title": ticket.title,
-                                                "description": ticket.description,
-                                                "image": ticket.image,
-                                                })
-        return render(request, "update-ticket.html", {"ticket": ticket, "form_ticket": form_ticket})
-
-
 @login_required
 def add_user_follow(request):
     data_follow = request.POST
@@ -123,40 +82,51 @@ def add_user_follow(request):
         followed_user=username_search
     )
     user_follow.save()
-    return HttpResponseRedirect(reverse("subscribe"))
+    return HttpResponseRedirect(reverse("users/abos"))
 
 
 @login_required
 def remove_user_follow(request):
+    """Remove user from following"""
     followed_user = request.POST["followed_user"]
     user_defollow = UserFollows.objects.filter(followed_user=followed_user).filter(user=request.user)
     user_defollow.delete()
-    return HttpResponseRedirect(reverse("subscribe"))
-
+    return HttpResponseRedirect(reverse("users/subscrip"))
 
 @login_required
 def create_ticket(request):
-    # Method POST
     if request.method == "POST":
         form_ticket = UploadTicketForm(request.POST, request.FILES)
         if form_ticket.is_valid():
             form_ticket.save()
-    # Method GET
     else:
         form_ticket = UploadTicketForm(initial={"user": request.user})
-        return render(request, "create-ticket.html", {'form_ticket': form_ticket})
+        return render(request, "reviews/create-ticket.html", {"form_ticket": form_ticket})
 
-
+@login_required
+def update_ticket(request, ticket_id):
+    ticket = Ticket.objects.get(id=ticket_id)
+    if request.method == "POST":
+        ticket_update = Ticket.objects.get(id=ticket_id)
+        form_ticket = UploadTicketForm(request.POST, request.FILES, instance=ticket_update)
+        if form_ticket.is_valid():
+            form_ticket.save()
+            return HttpResponseRedirect(reverse("awebapp/posts"))
+    else:
+        form_ticket = UploadTicketForm(initial={"user": request.user,
+                                                "title": ticket.title,
+                                                "description": ticket.description,
+                                                "image": ticket.image,
+                                                })
+        return render(request, "reviews/update-ticket.html", {"ticket": ticket, "form_ticket": form_ticket})
+    
 @login_required
 def create_review(request):
     if request.method == "POST":
         form_ticket = UploadTicketForm(request.POST, request.FILES)
         form_review = UploadReviewForm(request.POST)
-        # Form Ticket Saving
         if form_ticket.is_valid():
             form_ticket.save()
-        # Form Review Saving
-        # Manually adding the data
         ticket = Ticket.objects.filter(user=request.user).latest("time_created")
         headline = request.POST["headline"]
         body = request.POST["body"]
@@ -170,12 +140,31 @@ def create_review(request):
             rating=request.POST["rating"],
             ticket=ticket
         )
-        return HttpResponseRedirect(reverse("view-posts"))
-        #return render(request, "test.html", {"data": request.POST, "data_review": review, "data_ticket": ticket})
+        return HttpResponseRedirect(reverse("awebapp/posts"))
     else:
         form_ticket = UploadTicketForm(initial={"user": request.user})
         form_review = UploadReviewForm(initial={"user": request.user})
-        return render(request, "create-review.html", {"form_ticket": form_ticket, "form_review": form_review})
+        return render(request, "reviews/create-review.html", {"form_ticket": form_ticket, "form_review": form_review})
+
+@login_required
+def update_review(request, review_id):
+    if request.method == "POST":
+        review_update = Review.objects.get(id=review_id)
+        review_update.headline = request.POST["headline"]
+        review_update.body = request.POST["body"]
+        review_update.rating = request.POST["rating"]
+        review_update.save()
+        return HttpResponseRedirect(reverse("awebapp/posts"))
+    else:
+        review = Review.objects.get(id=review_id)
+        ticket = Ticket.objects.get(id=review.ticket.id)
+        form_review = UploadReviewForm(initial={"user": request.user,
+                                                "ticket": review.ticket,
+                                                "headline": review.headline,
+                                                "body": review.body,
+                                                "rating": review.rating,
+                                                })
+        return render(request, "reviews/update-review.html", {"review": review, "form_review": form_review, "ticket": ticket})
 
 
 @login_required
@@ -190,14 +179,7 @@ def create_review_ticket(request, id):
             ticket=ticket
         )
         review.save()
-        return HttpResponseRedirect(reverse("view-posts"))
+        return HttpResponseRedirect(reverse("awebapp/posts"))
     else:
         ticket = Ticket.objects.get(id=id)
-        return render(request, "create-review-ticket.html", {"ticket": ticket})
-
-
-@login_required
-def view_posts(request):
-    reviews = Review.objects.filter(user=request.user)
-    tickets = Ticket.objects.filter(user=request.user)
-    return render(request, "view-posts.html", {"reviews": reviews, "tickets": tickets})
+        return render(request, "reviews/create-review-ticket.html", {"ticket": ticket})
