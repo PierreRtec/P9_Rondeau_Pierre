@@ -76,16 +76,20 @@ def abos(request):
                 user = User.objects.get(username=username)
             except:
                 return render(
-                    request, "reviews/abos.html", {"erreur": "Utilisateur non trouvé .."}
+                    request,
+                    "reviews/abos.html",
+                    {"erreur": "Utilisateur non trouvé .."},
                 )
             UserFollows.objects.create(user=request.user, followed_user=user)
         elif followed_user:
-            UserFollows.objects.get(user=request.user, followed_user=followed_user).delete()
+            UserFollows.objects.get(
+                user=request.user, followed_user=followed_user
+            ).delete()
     followers = UserFollows.objects.filter(followed_user=request.user)
     followed = UserFollows.objects.filter(user=request.user)
-    return render(request, "reviews/abos.html", {"followers": followers, "followed": followed})
-
-
+    return render(
+        request, "reviews/abos.html", {"followers": followers, "followed": followed}
+    )
 
 
 @login_required
