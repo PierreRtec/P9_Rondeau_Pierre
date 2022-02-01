@@ -25,20 +25,21 @@
                 {% csrf_token %}
                 <div class="row" style="margin-left: 600px">
                     <input name="username_search" id="username_search" placeholder="Nom d'utilisateur">
+                    <span style="color: white" class="input-group-btn">{{erreur}}</span>
                     <button id="button_search" class="btn btn-large btn-primary">Envoyer</button>
                 </div>
             </form>
         </div>
     <div>
         <h4>Abonnements</h4>
-        {% for followed_by in followed_user %}
+        {% for user in followed %}
             <div class="row">
                 <div style="border: 1px solid black; margin-left: 50px; width: 1200px">
-                    <h5 style="text-align: left">{{ followed_by.followed_user }}</h5>
+                    <h5 style="text-align: left">{{ user.followed_user.username }}</h5>
                 </div>
                 <form method="post">
                     {% csrf_token %}
-                    <input type="hidden" name="followed_user" value="{{ followed_by.followed_user.id }}">
+                    <input type="hidden" name="followed_user" value="{{ user.followed_user.id }}">
                     <button class="btn btn-large btn-primary">Se désabonner</button>
                 </form>
             </div>
@@ -47,9 +48,12 @@
 
     <div>
         <h4>Abonnés</h4>
-        {% for followed_user in followed_by %}
-            <div style="border: 1px solid black; margin-left: 40px; width: 1200px">
-                <h5 style="text-align: left">{{ followed_by.user }}</h5>
+        {% for user in followed %}
+        <div class="row">
+            <div style="color: white; margin-left: 50px; width: 1200px">
+                <h5 style="text-align: left">{{ user.followed_user.username }}</h5>
+                {% csrf_token %}
+                <input type="hidden" name="followers" value="{{ user.followed_user.id }}">
             </div>
         {% endfor %}
     </div>

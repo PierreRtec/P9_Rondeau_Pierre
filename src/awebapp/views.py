@@ -68,34 +68,24 @@ def posts(request):
 
 @login_required
 def abos(request):
-    following = UserFollows.objects.filter(user=request.user)
+    if request.method == "POST":
+        username = request.POST.get("username_search")
+        followed_user = request.POST.get("followed_user")
+        if username:
+            try:
+                user = User.objects.get(username=username)
+            except:
+                return render(
+                    request, "reviews/abos.html", {"erreur": "Utilisateur non trouvé .."}
+                )
+            UserFollows.objects.create(user=request.user, followed_user=user)
+        elif followed_user:
+            UserFollows.objects.get(user=request.user, followed_user=followed_user).delete()
     followers = UserFollows.objects.filter(followed_user=request.user)
-    return render(
-        request, "reviews/abos.html", {"following": following, "followers": followers}
-    )
+    followed = UserFollows.objects.filter(user=request.user)
+    return render(request, "reviews/abos.html", {"followers": followers, "followed": followed})
 
 
-@login_required
-def add_user_follow(request):
-    data_follow = request.POST
-    username_search = data_follow["username_search"]
-    username_search = User.objects.get(username=username_search)
-    user_follow = UserFollows.objects.create(
-        user=request.user, followed_user=username_search
-    )
-    user_follow.save()
-    return HttpResponseRedirect(reverse("users/abos"))
-
-
-@login_required
-def remove_user_follow(request):
-    """Remove user from following"""
-    followed_user = request.POST["followed_user"]
-    user_defollow = UserFollows.objects.filter(followed_user=followed_user).filter(
-        user=request.user
-    )
-    user_defollow.delete()
-    return HttpResponseRedirect(reverse("users/subscrip"))
 
 
 @login_required
