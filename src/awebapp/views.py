@@ -95,20 +95,24 @@ def abos(request):
 def create_ticket(request):
     if request.method == "POST":
         ticket = request.POST.get("ticket")
-        form_ticket = request.POST.get("ticket_form")
-        if form_ticket:
-            try:
-                ticket = Ticket.objects.get(ticket=create_ticket)
-            except:
-                return render(
-                    request,
-                    "reviews/flux.html",
-                    {"erreur": "Ticket non valide et non envoyé"},
-                )
-            Ticket.objects.create(ticket=request.ticket, form_ticket=request.form_ticket)
-        else:
-                form_ticket = UploadTicketForm(initial={"user": request.user})
-                return render(request, "reviews/create-ticket.html", {'form_ticket': form_ticket})
+        form_ticket = request.POST.get("form_ticket")
+        if form_ticket.is_valid():
+            form_ticket.save()
+            return HttpResponseRedirect(reverse("awebapp/posts"))
+    else:
+        form_ticket = UploadTicketForm(
+            initial={
+                "user": request.user,
+                "title": ticket.title,
+                "description": ticket.description,
+                "image": ticket.image,
+            }
+        )
+        return render(
+            request,
+            "reviews/create-ticket.html",
+            {"ticket": ticket, "form_ticket": form_ticket},
+        )
     return render(request, "reviews/create-ticket.html")
 
 
