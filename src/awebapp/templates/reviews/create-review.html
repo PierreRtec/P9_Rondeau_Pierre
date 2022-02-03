@@ -18,33 +18,64 @@
   </head>
 <div style="border: 2px solid white; margin: 20px">
     <h4 style="text-align: center">Créer une critique</h4>
-    <form method="post" enctype="multipart/form-data">
+    <form method="post">
         {% csrf_token %}
-        <div>
-            <div>
-                <h5>Titre</h5>
-                {{ form_ticket.title }}
-                <h5>Description</h5>
-                {{ form_ticket.description }}
-                <br>
-                {{ form_ticket.image }}
-                {{ form_ticket.user.as_hidden }}
-            </div>
+        <div class="form-group">
+            <div style="border: 2px solid white; margin: 20px">
+            <div class="col-md-2 col-sm-2">
+                <h5>Livre / Artcile</h5>
+          <label for="title"><h5>Titre</h5></label>
+          <input type="title" class="form-control" id="title">
         </div>
-        <hr>
-        <div>
-            <h4>Critique</h4>
-            <div>
-                <h5>Titre</h5>
-                {{ form_review.headline }}
-                <h5>Note</h5>
-                {{ form_review.rating }}
-                <h5>Commentaire</h5>
-                {{ form_review.body }}
-                {{ form_review.user.as_hidden }}
-            </div>
+        <div class="form-group">
+          <label for="description"><h5>Description</h5></label>
+          <textarea class="form-control" id="description"></textarea>
         </div>
+        <div class="custom-file">
+            <input type="file" class="custom-file-input" id="image">
+            <label class="custom-file-label" for="customFile">Choose file</label>
+          </div>
         <button class="btn btn-primary">Envoyer</button>
-    </form>
+        </div>
+        <div style="border: 2px solid white; margin: 20px">
+            <div class="form-group">
+            <div class="col-md-2 col-sm-2">
+                <h5>Critique</h5>
+          <label for="title"><h5>Titre</h5></label>
+          <input type="title" class="form-control" id="title">
+        </div>
+        <div class="form-check form-check-inline">
+            <div class="col-md-2 col-sm-2">
+                <h5>Note</h5>
+            </div>
+            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+            <label class="form-check-label" for="inlineRadio1">1</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+            <label class="form-check-label" for="inlineRadio2">2</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
+            <label class="form-check-label" for="inlineRadio3">3</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio4" value="option4">
+            <label class="form-check-label" for="inlineRadio4">4</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio5" value="option5">
+            <label class="form-check-label" for="inlineRadio5">5</label>
+          </div>
+          <div class="form-group">
+            <label for="description" id="commentairereview"><h5>Commentaire</h5></label>
+            <textarea class="form-control" id="commentairereview"></textarea>
+          </div>
+        <div class="custom-file">
+            <input type="file" class="custom-file-input" id="image">
+            <label class="custom-file-label" for="customFile">Choose file</label>
+          </div>
+        <button class="btn btn-primary">Envoyer</button>
+      </form>
 </div>
 {% endblock %}
