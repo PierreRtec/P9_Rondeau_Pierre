@@ -19,7 +19,7 @@ urlpatterns = [
     path(
         "create-review-ticket/<int:id>", views.create_review_ticket, name="create-review-ticket"
     ),
-    path('view_posts/', views.view_posts, name='view_posts'),
+    # path('view_posts/', views.view_posts, name='view_posts'),
     # path('create_review_ticket/', views.create_review_ticket, name='create_review_ticket'),
     # path('create_review/', views.create_review, name='create_review'),
     # path('create-ticket/', views.create-ticket, name='create-ticket'),
