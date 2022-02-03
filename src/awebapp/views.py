@@ -114,7 +114,7 @@ def create_ticket(request):
             {"ticket": ticket, "form_ticket": form_ticket},
         )
     return render(request, "reviews/create-ticket.html")
-
+# error local variable ref before asignment ...
 
 @login_required
 def update_ticket(request, ticket_id):
