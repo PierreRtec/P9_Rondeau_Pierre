@@ -17,7 +17,7 @@ urlpatterns = [
     path("update-review/<int:review_id>", views.update_review, name="update-review"),
     path("create-review/", views.create_review, name="create-review"),
     path(
-        "create-review-ticket/", views.create_review_ticket, name="create-review-ticket"
+        "create-review-ticket/<int:id>", views.create_review_ticket, name="create-review-ticket"
     ),
     # path('view_posts/', views.view_posts, name='view_posts'),
     # path('create_review_ticket/', views.create_review_ticket, name='create_review_ticket'),

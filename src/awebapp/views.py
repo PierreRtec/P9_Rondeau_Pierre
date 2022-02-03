@@ -91,7 +91,6 @@ def abos(request):
         request, "reviews/abos.html", {"followers": followers, "followed": followed}
     )
 
-
 @login_required
 def create_ticket(request):
     if request.method == "POST":
@@ -99,14 +98,14 @@ def create_ticket(request):
         form_ticket = request.POST.get("ticket_form")
         if form_ticket:
             try:
-                ticket = Ticket.objects.get(ticket=ticket)
+                ticket = Ticket.objects.get(ticket=create_ticket)
             except:
                 return render(
                     request,
                     "reviews/flux.html",
                     {"erreur": "Ticket non valide et non envoyé"},
                 )
-            Ticket.objects.create(ticket=request.ticket, form_ticket=request.form_ticket).save()
+            Ticket.objects.create(ticket=request.ticket, form_ticket=request.form_ticket)
         else:
                 form_ticket = UploadTicketForm(initial={"user": request.user})
                 return render(request, "reviews/create-ticket.html", {'form_ticket': form_ticket})

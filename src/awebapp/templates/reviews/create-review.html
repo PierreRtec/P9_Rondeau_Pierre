@@ -32,7 +32,8 @@
           <textarea class="form-control" value={{ form_ticket.description }} id="description"></textarea>
         </div>
         <div class="custom-file">
-            <input value="{{ form_ticket.image }}","{{ form_ticket.user.as_hidden }}" type="file" class="custom-file-input" id="image">
+            <input type="hidden" value="{{ form_ticket.user }}">
+            <input value="{{ form_ticket.image }}" type="file" class="custom-file-input" id="image">
             <label class="custom-file-label" for="customFile">Choose file</label>
           </div>
         </div>
@@ -71,8 +72,8 @@
             <textarea class="form-control" id="commentairereview"></textarea>
           </div>
         <div class="custom-file">
-            <input value="{{ form_review.body }}","{{ form_review.user.as_hidden }}" type="file" class="custom-file-input" id="image">
-            <label class="custom-file-label" for="customFile">Choose file</label>
+            <input type="hidden" value="{{ form_ticket.user }}">
+            <input value="{{ form_review.body }}" type="file" class="custom-file-input" id="image">
           </div>
         <button class="btn btn-primary">Envoyer</button>
       </form>
