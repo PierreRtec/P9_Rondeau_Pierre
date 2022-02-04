@@ -1,5 +1,5 @@
 from django import forms
-from django.forms import ModelForm
+from django.forms import Form
 from awebapp.models import User, UserFollows, Ticket, Review
 from django.core.validators import MaxValueValidator
 
@@ -22,7 +22,7 @@ class UserFollowsForm(forms.Form):
         exclude = ["user"]
 
 
-class UploadTicketForm(forms.Form):
+class CreateTicketForm(forms.Form):
     class Meta:
         model = Ticket
         fields = ["title", "description", "image", "user"]

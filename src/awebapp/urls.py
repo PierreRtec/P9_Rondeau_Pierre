@@ -1,6 +1,8 @@
 from django.urls import path
 from . import views
 from awebapp import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 app_name = "awebapp"
 urlpatterns = [
@@ -30,3 +32,7 @@ urlpatterns = [
     # path('update-ticketket/', views.update-ticketket, name='update-ticketket'),
     # path('update_review/', views.update_review, name='update_review'),
 ]
+
+# permet le service de fichier static de développement, pas propre
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -7,7 +7,7 @@ from django.contrib.auth import authenticate, login, logout
 from awebapp.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.hashers import make_password
-from awebapp.forms import UploadTicketForm, UploadReviewForm
+from awebapp.forms import CreateTicketForm, UploadReviewForm
 from awebapp.models import User, Ticket, UserFollows, Review
 
 
@@ -91,30 +91,22 @@ def abos(request):
         request, "reviews/abos.html", {"followers": followers, "followed": followed}
     )
 
+
 @login_required
 def create_ticket(request):
+    form_ticket = CreateTicketForm()
     if request.method == "POST":
-        ticket = request.POST.get("ticket")
-        form_ticket = request.POST.get("form_ticket")
+        form_ticket = CreateTicketForm(request.POST, request.FILES)
         if form_ticket.is_valid():
-            form_ticket.save()
-            return HttpResponseRedirect(reverse("awebapp/posts"))
-    else:
-        form_ticket = UploadTicketForm(
-            initial={
-                "user": request.user,
-                "title": ticket.title,
-                "description": ticket.description,
-                "image": ticket.image,
-            }
-        )
-        return render(
-            request,
-            "reviews/create-ticket.html",
-            {"ticket": ticket, "form_ticket": form_ticket},
-        )
-    return render(request, "reviews/create-ticket.html")
-# error local variable ref before asignment ...
+            ticket = CreateTicketForm.save(commit=False)
+            ticket.uploader = request.user
+            ticket.save()
+            return render(request, "awebapp/flux.html")
+    context = {
+        "form_ticket": form_ticket,
+    }
+    return render(request, "reviews/create-ticket.html", context=context)
+
 
 @login_required
 def update_ticket(request, ticket_id):

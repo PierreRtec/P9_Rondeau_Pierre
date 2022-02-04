@@ -38,6 +38,9 @@ class Ticket(models.Model):
     image = models.ImageField(null=True, blank=True, upload_to="images/")
     time_created = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return "{} by {}".format(self.title, self.user)
+
 
 class Review(models.Model):
 
@@ -49,3 +52,6 @@ class Review(models.Model):
     headline = models.CharField(max_length=128)
     body = models.TextField(max_length=8192, blank=True)
     time_created = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return "{} - {}".format(self.ticket.title, self.headline)
