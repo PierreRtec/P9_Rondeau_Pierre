@@ -18,43 +18,16 @@
   </head>
 <body>
   <main role="main" class="container">
-
-    {% block body %}
-    <h1 style="text-align: center">Vos posts</h1>
-
     <div style="border: 2px solid white; margin: 20px">
         {% for ticket in tickets %}
-            <div>
-                Vous avez publié un ticket<br>
+            <div style="border: 2px solid white; padding: 5px">
+                Vous avez publié un ticket
                 {{ ticket.title }}<br>
                 {{ ticket.description }}<br>
-                <img src="{{ ticket.image.url }}" widht="200px" height="200px"><br>
-                {{ ticket.time_created }}<br>
-                <a href={% url 'update-ticket' ticket_id=ticket.id %}><button>Modifier le ticket</button></a>
-            </div>
-            <br><hr>
+                {{ ticket.user }}<br>
+                <img src="{% static 'images/'%}"><br>
         {% endfor %}
-        <br><hr><br>
-        {% for review in reviews %}
-            <div style="border: 2px solid white;">
-                Vous avez publié une critique<br>
-                {{ review.headline }}<br>
-                {{ review.body }}<br>
-                {{ review.rating }}<br>
-                {{ review.time_created }}<br>
-                <div style="border: 2px solid white; margin: 30px">
-                    Ticket - Vous
-                    {{ review.ticket.title }}<br>
-                    {{ review.ticket.description }}<br>
-                    <img src="{{ review.ticket.image.url }}" widht="200px" height="200px"><br>
-                    {{ review.ticket.time_created }}<br>
-                <a href={% url 'update-review' review_id=review.id %}><button>Modifier la critique</button></a>
-                </div>
-            </div>
-            <hr>
-        {% endfor %}
+    {% endblock content %}
     </div>
-{% endblock %}
 </body>
 </html>
-{% endblock %}

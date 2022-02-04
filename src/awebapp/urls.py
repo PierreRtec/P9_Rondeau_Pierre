@@ -31,8 +31,8 @@ urlpatterns = [
     # path('add_user_follow/', views.add_user_follow, name='add_user_follow'),
     # path('update-ticketket/', views.update-ticketket, name='update-ticketket'),
     # path('update_review/', views.update_review, name='update_review'),
-]
+] 
 
 # permet le service de fichier static de développement, pas propre
 if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, images_root=settings.MEDIA_ROOT)

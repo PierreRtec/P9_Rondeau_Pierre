@@ -64,7 +64,11 @@ def flux(request):
 
 @login_required
 def posts(request):
-    return render(request, "reviews/posts.html")
+    reviews = Review.objects.filter(user=request.user)
+    tickets = Ticket.objects.filter(user=request.user)
+    return render(
+        request, "reviews/posts.html", {"reviews": reviews, "tickets": tickets}
+    )
 
 
 @login_required
@@ -103,7 +107,7 @@ def create_ticket(request):
                 description=request.POST["description"],
                 user=request.user,
                 image=request.FILES["image"],
-                #time_created=request.POST["time_created"],
+                # time_created=request.TIME["time_created"],
             )
             form_ticket.save()
     else:
