@@ -21,17 +21,17 @@
     <div class="row" align="center">
         <h2> Créer un ticket </h2>
     </div>
-    <form name="createticket" enctype="multipart/form-data" method="post">
+    <form name="form_ticket" enctype="multipart/form-data" method="post">
         <div class="form-group">
           <label for="title"><h5>Titre</h5></label>
-          <input name="form_ticket" type="title" class="form-control" id="title" placeholder="Saisissez le titre de votre ticket">
+          <input name="title" type="title" class="form-control" id="title" placeholder="Saisissez le titre de votre ticket">
         </div>
         <div class="form-group">
           <label for="description"><h5>Description</h5></label>
-          <textarea class="form-control" id="description"></textarea>
+          <textarea name="description" class="form-control" id="description"></textarea>
         </div>  
         <div class="custom-file">
-            <input name="imageinput" type="file" class="custom-file-input" id="image">
+            <input name="image" value="{{ form_ticket.image }}" type="file" class="custom-file-input" id="image">
           </div>
         {% csrf_token %}
         <button type="submit" class="btn btn-success">Envoyer</button>

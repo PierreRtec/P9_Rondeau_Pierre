@@ -1,3 +1,4 @@
+import re
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render, redirect
 from django.urls import reverse
@@ -94,18 +95,23 @@ def abos(request):
 
 @login_required
 def create_ticket(request):
-    form_ticket = CreateTicketForm()
     if request.method == "POST":
         form_ticket = CreateTicketForm(request.POST, request.FILES)
         if form_ticket.is_valid():
-            ticket = CreateTicketForm.save(commit=False)
-            ticket.uploader = request.user
-            ticket.save()
-            return render(request, "awebapp/flux.html")
-    context = {
-        "form_ticket": form_ticket,
-    }
-    return render(request, "reviews/create-ticket.html", context=context)
+            form_ticket = Ticket.objects.create(
+                title=request.POST["title"],
+                description=request.POST["description"],
+                user=request.user,
+                image=request.FILES["image"],
+                #time_created=request.POST["time_created"],
+            )
+            form_ticket.save()
+    else:
+        form_ticket = CreateTicketForm(initial={"user": request.user})
+        return render(
+            request, "reviews/create-ticket.html", {"form_ticket": form_ticket}
+        )
+    return render(request, "reviews/create-ticket.html")
 
 
 @login_required
