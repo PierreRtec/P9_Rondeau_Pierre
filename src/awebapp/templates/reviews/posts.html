@@ -18,16 +18,18 @@
   </head>
 <body>
   <main role="main" class="container">
-    <div style="border: 2px solid white; margin: 20px">
-        {% for ticket in tickets %}
-            <div style="border: 2px solid white; padding: 5px">
-                Vous avez publié un ticket
-                {{ ticket.title }}<br>
-                {{ ticket.description }}<br>
-                {{ ticket.user }}<br>
-                <img src="{% static 'images/'%}"><br>
-        {% endfor %}
-    {% endblock content %}
+      {% for ticket in tickets %}
+      <div class="row justify-content-md-center">
+          <div style="border: 2px solid white; padding: 5px">
+              Vous avez publié un ticket
+              {{ ticket.title }}<br>
+              {{ ticket.description }}<br>
+              {{ ticket.user }}<br>
+              <img src="{{ ticket.image }}">
+            </div>
+          </div>
+      {% endfor %}
     </div>
 </body>
 </html>
+{% endblock %}
