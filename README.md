@@ -9,9 +9,11 @@
 ## Comment installer l'environnement virtuel ?
 Dans votre terminal :
 
-* pip install pipenv
-* pipenv shell
-* pipenv install
+> pip install pipenv
+
+> pipenv shell
+
+> pipenv install
 
 ### Pour plus de précisions : https://pypi.org/project/pipenv/
 ---
@@ -20,6 +22,7 @@ Dans votre terminal :
 Dans votre terminal :
 
 > cd ./src
+
 > py -m manage runserver
 
 Vous devriez voir apparaître dans votre terminale les lignes suivantes :
@@ -85,8 +88,11 @@ Mais vous devrez refaire les migrations pour apporter les changements.
 Dans votre terminal assurez-vous de saisir :
 
 > py -m manage makemigrations "nomdel'app"
+
 No changes detected
+
 > py -m manage migrate
+
 Running migrations:
   Applying auth.[...]
   [...]
