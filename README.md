@@ -1,11 +1,7 @@
 # Application web Django dédié aux critiques de livres et d'articles
 ---
-# Prérequis :
+# Prérequis
 
-
-NE PAS OUBLIER lors de la makemigrations <<<"nom de mon application">>> puis,
-commande migrate et le tour est joué !% eazzzzzzazaeezzaeaze
-=======
 - Python 3.10
 - Environnement virtuel
 - pipenv
