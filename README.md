@@ -77,7 +77,9 @@ http://127.0.0.1:8000/awebapp/create-ticket/
 
 http://127.0.0.1:8000/awebapp/create-review/
 
-## II - Utilisation avancée : générez un rapport flake8
+## II - Utilisation avancée
+
+### Générez un rapport flake8
 
 + pipenv install flake8
 + pipenv install flake8-html
