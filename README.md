@@ -40,22 +40,44 @@ Comme vous l'aurez compris, un Ctrl+C permettras de stopper le serveur.
 
 
 
-## Pages & Fonctionnalités
+## I - User Interface
 
-### page 1 :
+### Page d'accueil :
+
+http://127.0.0.1:8000/awebapp/homepage/
+
+### Page d'inscription :
+
+http://127.0.0.1:8000/awebapp/signup/
+
+### Page de connexion / déconnexion :
+
+http://127.0.0.1:8000/awebapp/login/
+
+http://127.0.0.1:8000/awebapp/logout/
+
+### *connexion requise* Page du flux d'actualité :
+
+http://127.0.0.1:8000/awebapp/flux/
+
+### *connexion requise* Page des abonnements :
+
+http://127.0.0.1:8000/awebapp/abos/
+
+### *connexion requise* Mes posts :
+
+http://127.0.0.1:8000/awebapp/posts/
+
+### *connexion requise* Demandes de critiques de livre / article :
+
+http://127.0.0.1:8000/awebapp/create-ticket/
 
 
-### page 2 :
+### *connexion requise* Création de critiques (avec ou sans réponse à une demande) :
 
+http://127.0.0.1:8000/awebapp/create-review/
 
-
-### page 3 :
-
-
-### page 4 :
-
-
-### Générez un rapport flake8
+## II - Utilisation avancée : générez un rapport flake8
 
 + pipenv install flake8
 + pipenv install flake8-html
@@ -100,3 +122,20 @@ No changes detected
 Running migrations:
   Applying auth.[...]
   [...]
+
+#### Création d'un super-utilisateur
+
+documentation Django : https://docs.djangoproject.com/fr/1.8/intro/tutorial02/
+
+> python manage.py createsuperuser
+
+..identifiants
+..mdp
+..mdp confirmation
+..success !
+
+> py -m manage runserver
+
+rendez-vous sur http://127.0.0.1:8000/admin
+
+entrez vos identifiants et accèdez à l'espace administrateur de votre application web
