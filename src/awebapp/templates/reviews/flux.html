@@ -26,17 +26,20 @@
             <a class="btn btn-lg btn-primary" href="http://127.0.0.1:8000/awebapp/create-review" role="button">Créer une critique</a>        
         </div>
         {% for ticket in tickets %}
-        <div class="row justify-content-md-center">
+        <div class="row form-group p-2 justify-content-md-center" style="background-color: white; border-radius: 15px; padding: 5px">
             <div style="border: 2px solid white; padding: 5px">
                 Vous avez publié un ticket
                 {{ ticket.title }}<br>
                 {{ ticket.description }}<br>
                 {{ ticket.user }}<br>
                 <img src="{{ ticket.image }}">
-              </div>
+                </div>
             </div>
+            </div>
+        <div class="row form-group p-2">
         {% endfor %}
-        </div>                    
+        </div>  
+
     </div>
     </div>
   </main>

@@ -34,12 +34,12 @@
         <h4>Abonnements</h4>
         {% for user in followed %}
             <div class="row">
-                <div style="border: 1px solid black; margin-left: 50px; width: 1200px">
+                <div style="color: orange">
                     <h5 style="text-align: left">{{ user.followed_user.username }}</h5>
                 </div>
                 <form method="post">
-                    {% csrf_token %}
                     <input type="hidden" name="followed_user" value="{{ user.followed_user.id }}">
+                    {% csrf_token %}
                     <button class="btn btn-large btn-primary">Se désabonner</button>
                 </form>
             </div>
@@ -50,7 +50,7 @@
         <h4>Abonnés</h4>
         {% for user in followed %}
         <div class="row">
-            <div style="color: white; margin-left: 50px; width: 1200px">
+            <div style="color: blue; margin-left: 50px; width: 1200px">
                 <h5 style="text-align: left">{{ user.followed_user.username }}</h5>
                 {% csrf_token %}
                 <input type="hidden" name="followers" value="{{ user.followed_user.id }}">

@@ -15,14 +15,10 @@ urlpatterns = [
     path("posts/", views.posts, name="posts"),
     path("abos/", views.abos, name="abos"),
     path("create-ticket/", views.create_ticket, name="create-ticket"),
-    path("update-ticket/<int:review_id>", views.update_ticket, name="update-ticket"),
-    path("update-review/<int:review_id>", views.update_review, name="update-review"),
+    # path("update-ticket/", views.update_ticket, name="update-ticket"),
+    # path("update-review/<int:review_id>", views.update_review, name="update-review"),
     path("create-review/", views.create_review, name="create-review"),
-    path(
-        "create-review-ticket/<int:id>",
-        views.create_review_ticket,
-        name="create-review-ticket",
-    ),
+    # path("create-review-ticket/<int:id>",views.create_review_ticket,name="create-review-ticket"),
     # path('view_posts/', views.view_posts, name='view_posts'),
     # path('create_review_ticket/', views.create_review_ticket, name='create_review_ticket'),
     # path('create_review/', views.create_review, name='create_review'),
@@ -31,7 +27,7 @@ urlpatterns = [
     # path('add_user_follow/', views.add_user_follow, name='add_user_follow'),
     # path('update-ticketket/', views.update-ticketket, name='update-ticketket'),
     # path('update_review/', views.update_review, name='update_review'),
-] 
+]
 
 # permet le service de fichier static de développement, pas propre
 if settings.DEBUG:

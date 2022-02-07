@@ -8,7 +8,7 @@ from django.contrib.auth import authenticate, login, logout
 from awebapp.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.hashers import make_password
-from awebapp.forms import CreateTicketForm, UploadReviewForm
+from awebapp.forms import CreateReviewForm, CreateTicketForm
 from awebapp.models import User, Ticket, UserFollows, Review
 
 
@@ -119,104 +119,52 @@ def create_ticket(request):
 
 
 @login_required
-def update_ticket(request, ticket_id):
-    ticket = Ticket.objects.get(id=ticket_id)
-    if request.method == "POST":
-        ticket_update = Ticket.objects.get(id=ticket_id)
-        form_ticket = UploadTicketForm(
-            request.POST, request.FILES, instance=ticket_update
-        )
-        if form_ticket.is_valid():
-            form_ticket.save()
-            return HttpResponseRedirect(reverse("awebapp/posts"))
-    else:
-        form_ticket = UploadTicketForm(
-            initial={
-                "user": request.user,
-                "title": ticket.title,
-                "description": ticket.description,
-                "image": ticket.image,
-            }
-        )
-        return render(
-            request,
-            "reviews/update-ticket.html",
-            {"ticket": ticket, "form_ticket": form_ticket},
-        )
-
-
-@login_required
 def create_review(request):
     if request.method == "POST":
-        form_ticket = UploadTicketForm(request.POST, request.FILES)
-        form_review = UploadReviewForm(request.POST)
-        if form_ticket.is_valid():
-            form_ticket.save()
-        ticket = Ticket.objects.filter(user=request.user).latest("time_created")
-        headline = request.POST["headline"]
-        body = request.POST["body"]
-        user = request.user
-        rating = request.POST["rating"]
-        ticket = ticket
-        review = Review.objects.create(
-            headline=request.POST["headline"],
-            body=request.POST["body"],
-            user=request.user,
-            rating=request.POST["rating"],
-            ticket=ticket,
-        )
-        return HttpResponseRedirect(reverse("awebapp/posts"))
+        form_review = CreateReviewForm(request.POST, request.FILES)
+        if form_review.is_valid():
+            form_review = Review.objects.create(
+                # ticket = form_ticket.get(request.ticket_id),
+                rating=request.POST.rating["rating"],
+                user=request.user,
+                headline=request.POST["headline"],
+                body=request.POST["body"],
+                # time_created = request.POST["time_created"],
+            )
+            form_review.save()
     else:
-        form_ticket = UploadTicketForm(initial={"user": request.user})
-        form_review = UploadReviewForm(initial={"user": request.user})
+        form_review = CreateReviewForm(initial={"user": request.user})
         return render(
-            request,
-            "reviews/create-review.html",
-            {"form_ticket": form_ticket, "form_review": form_review},
+            request, "reviews/create-review.html", {"form_review": form_review}
         )
+    return render(request, "reviews/create-review.html")
 
 
+"""
 @login_required
-def update_review(request, review_id):
-    if request.method == "POST":
-        review_update = Review.objects.get(id=review_id)
-        review_update.headline = request.POST["headline"]
-        review_update.body = request.POST["body"]
-        review_update.rating = request.POST["rating"]
-        review_update.save()
-        return HttpResponseRedirect(reverse("awebapp/posts"))
+def create_review(request): #ticket_id):
+    form_review = CreateReviewForm()
+    form_ticket = CreateTicketForm()
+    if request.method == 'POST':
+        if form_review in request.POST:
+            form_review = CreateReviewForm(request.POST)
+            if form_review.is_valid():
+                form_review.save()
+                return redirect('/awebapp/flux')
+            if form_ticket in request.POST:
+                form_ticket = CreateReviewForm(request.POST)
+            if form_ticket.is_valid():
+                form_ticket.save()  
     else:
-        review = Review.objects.get(id=review_id)
-        ticket = Ticket.objects.get(id=review.ticket.id)
-        form_review = UploadReviewForm(
-            initial={
-                "user": request.user,
-                "ticket": review.ticket,
-                "headline": review.headline,
-                "body": review.body,
-                "rating": review.rating,
-            }
-        )
-        return render(
-            request,
-            "reviews/update-review.html",
-            {"review": review, "form_review": form_review, "ticket": ticket},
-        )
+            form_review = CreateReviewForm(initial={"user": request.user})
+            return render(
+                request, "reviews/create-review.html", {"form_review": form_review}
+            )
+    return render(request, "reviews/create-review.html")
+"""
 
 
-@login_required
-def create_review_ticket(request, id):
-    if request.method == "POST":
-        ticket = Ticket.objects.get(id=id)
-        review = Review.objects.create(
-            headline=request.POST["headline"],
-            body=request.POST["body"],
-            user=request.user,
-            rating=request.POST["rating"],
-            ticket=ticket,
-        )
-        review.save()
-        return HttpResponseRedirect(reverse("awebapp/posts"))
-    else:
-        ticket = Ticket.objects.get(id=id)
-        return render(request, "reviews/create-review-ticket.html", {"ticket": ticket})
+# livre / article doit être différencier dans les forms + model ??
+# comment mettre tout dans la même class -> upload / update / delete ??
+# faire la creation d'une review en réponse d'un ticket également
+# bien gérer l'affichage des images.
