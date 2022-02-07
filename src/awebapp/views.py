@@ -110,6 +110,10 @@ def create_ticket(request):
                 # time_created=request.TIME["time_created"],
             )
             form_ticket.save()
+        #elif form_ticket:
+            #Ticket.objects.get(
+                #ticket=request.ticket_id
+            #).delete()
     else:
         form_ticket = CreateTicketForm(initial={"user": request.user})
         return render(
@@ -132,6 +136,10 @@ def create_review(request):
                 # time_created = request.POST["time_created"],
             )
             form_review.save()
+        #elif form_review:
+            #Review.objects.get(
+                #review=request.review_id
+            #).delete()
     else:
         form_review = CreateReviewForm(initial={"user": request.user})
         return render(
@@ -151,10 +159,7 @@ def create_review(request): #ticket_id):
             if form_review.is_valid():
                 form_review.save()
                 return redirect('/awebapp/flux')
-            if form_ticket in request.POST:
-                form_ticket = CreateReviewForm(request.POST)
-            if form_ticket.is_valid():
-                form_ticket.save()  
+            
     else:
             form_review = CreateReviewForm(initial={"user": request.user})
             return render(
