@@ -147,7 +147,39 @@ def create_review(request):
         )
     return render(request, "reviews/create-review.html")
 
-
+@login_required
+def update_review(request, review_id):
+    review = Review.objects.get(id=review_id)
+    if request.method == "POST":
+        review_update = Review.objects.get(id=review_id)
+        form_review = CreateReviewForm(request.POST, request.FILES, instance=review_update)
+        if form_review.is_valid():
+            return render(request, "awebapp/posts.html")
+    else:
+        form_review = CreateReviewForm(initial={
+            "user": request.user,
+            "title": review.title,
+            "image": review.image,
+        })
+    return render(request, "reviews/update-review.html", {"review": review, "form_review": form_review})
+        
+@login_required
+def update_ticket(request, ticket_id):
+    ticket = Ticket.objects.get(id=ticket_id)
+    if request.method == "POST":
+        ticket_update = Review.objects.get(id=ticket_id)
+        form_ticket = CreateReviewForm(request.POST, request.FILES, instance=ticket_update)
+        if form_ticket.is_valid():
+            return render(request, "awebapp/posts.html")
+    else:
+        form_review = CreateTicketForm(initial={
+            "user": request.user,
+            "title": ticket.title,
+            "image": ticket.image,
+            "description": ticket.description,
+        })
+    return render(request, "reviews/update-ticket.html", {"ticket": ticket, "form_ticket": form_ticket})
+    
 """
 @login_required
 def create_review(request): #ticket_id):

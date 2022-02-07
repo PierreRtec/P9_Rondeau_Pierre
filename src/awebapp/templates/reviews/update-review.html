@@ -30,7 +30,6 @@
     </div>
     <br><hr><br>
     <form method="post">
-        {% csrf_token %}
         <div>
             <div>
                 Titre: {{ form_review.headline }}<br>
@@ -39,6 +38,7 @@
                 {{ form_review.ticket.as_hidden }}
                 {{ form_review.user.as_hidden }}
             </div>
+            {% csrf_token %}
             <button>Envoyer</button>
         </div>
     </form>
