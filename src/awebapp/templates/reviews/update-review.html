@@ -19,23 +19,22 @@
 <body>
     <main role="main" class="container">
       <div class="row" align="center">
-    <h4 style="text-align: center">Modifier votre critique</h4>
+    <h4 style="text-align: center">Bienvenue sur la page de modification de review !</h4>
     <div style="border: 2px solid black; margin: 20px">
         <div>
-            <h5>Vous êtes en train de poster en réponse à:</h5>
-            <div style="border: 2px solid black; margin: 30px">
-                {{ review.ticket.user }} a demandé une critique<br>
-                {{ review.ticket.title }}<br>
-                {{ review.ticket.description }}<br>
-                <img src="{{ review.ticket.image.url }}" widht="200px" height="200px"><br>
+            <h5>! Vous êtes en train de modifier votre critique !</h5>
+            <div style="border: 2px solid white; margin: auto">
+                <h6>{{ review.ticket.user }} a publié une critique</h6><br>
+                <h5 style="color: white;">{{ review.headline }}</h5><br>
+                <label style="color: white;">{{ review.body }}</label><br>
+                <label style="color: yellow;">{{ review.rating }} sur 5</label><br>
             </div>
         </div>
         <br><hr><br>
         <form name="update-review" method="post">
             <div>
-                <div>
-                <label>Titre</label><input name="title">
-                
+                <label>Titre</label><input name="headline"><br>
+                <label>Commentaire</label><input name="body"><br>
                 </div>
                 {% csrf_token %}
                 <button>Modifier</button>

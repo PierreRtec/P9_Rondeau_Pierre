@@ -21,12 +21,15 @@
       {% for ticket in tickets %}
       <div class="row justify-content-md-center">
           <div style="border: 2px solid white; padding: 5px">
-              Vous avez publié un ticket
+              Vous avez publié un ticket<br>
               {{ ticket.title }}<br>
               {{ ticket.description }}<br>
               {{ ticket.user }}<br>
               <img src="{{ ticket.image }}">
             </div>
+          </div>
+          <div class="col-md-3">
+            <a class="btn btn-lg btn-primary" href="http://127.0.0.1:8000/awebapp/update-ticket/{{ ticket.id }}" role="button">modif ticket</a>
           </div>
       {% endfor %}
     </div>

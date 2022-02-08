@@ -154,13 +154,14 @@ def update_review(request, review_id):
             review.delete()
             return render(request, "awebapp/posts.html")
         else:
-            form_review = CreateReviewForm(request.POST, request.FILES, instance=review)
+            form_review = CreateReviewForm(request.POST, request.FILES, initial=review)
             if form_review.is_valid():
                 form_review.save()
                 return render(request, "awebapp/posts.html")
 
     else:
         form_review = CreateReviewForm(initial=review)
+        return render(request, "reviews/posts.html")
     return render(
         request,
         "reviews/update-review.html",
@@ -172,25 +173,23 @@ def update_review(request, review_id):
 def update_ticket(request, ticket_id):
     ticket = Ticket.objects.get(id=ticket_id)
     if request.method == "POST":
-        ticket_update = Review.objects.get(id=ticket_id)
-        form_ticket = CreateReviewForm(request.POST, request.FILES, instance=ticket)
-        if form_ticket.is_valid():
+        delete = request.POST.get("delete")
+        if delete:
+            ticket.delete()
             return render(request, "awebapp/posts.html")
+        else:
+            form_ticket = CreateTicketForm(request.POST, request.FILES, instance=ticket)
+            if form_ticket.is_valid():
+                form_ticket.save()
+                return render(request, "awebapp/posts.html")
+
     else:
-        form_review = CreateTicketForm(
-            initial={
-                "user": request.user,
-                "title": ticket.title,
-                "image": ticket.image,
-                "description": ticket.description,
-            }
-        )
+        form_ticket = CreateTicketForm(initial=ticket)
     return render(
         request,
         "reviews/update-ticket.html",
         {"ticket": ticket, "form_ticket": form_ticket},
     )
-
 
 # livre / article doit être différencier dans les forms + model ??
 # comment mettre tout dans la même class -> upload / update / delete ??
