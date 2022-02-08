@@ -107,13 +107,8 @@ def create_ticket(request):
                 description=request.POST["description"],
                 user=request.user,
                 image=request.FILES["image"],
-                # time_created=request.TIME["time_created"],
             )
             form_ticket.save()
-        #elif form_ticket:
-            #Ticket.objects.get(
-                #ticket=request.ticket_id
-            #).delete()
     else:
         form_ticket = CreateTicketForm(initial={"user": request.user})
         return render(
@@ -127,19 +122,21 @@ def create_review(request):
     if request.method == "POST":
         form_review = CreateReviewForm(request.POST, request.FILES)
         if form_review.is_valid():
+            form_ticket = Ticket.objects.create(
+                title=request.POST["title"],
+                description=request.POST["description"],
+                user=request.user,
+                image=request.FILES["image"],
+            )
+            form_ticket.save()
             form_review = Review.objects.create(
-                # ticket = form_ticket.get(request.ticket_id),
-                rating=request.POST.rating["rating"],
+                ticket=form_ticket,
+                rating=request.POST["rating"],
                 user=request.user,
                 headline=request.POST["headline"],
                 body=request.POST["body"],
-                # time_created = request.POST["time_created"],
             )
             form_review.save()
-        #elif form_review:
-            #Review.objects.get(
-                #review=request.review_id
-            #).delete()
     else:
         form_review = CreateReviewForm(initial={"user": request.user})
         return render(
@@ -147,58 +144,52 @@ def create_review(request):
         )
     return render(request, "reviews/create-review.html")
 
+
 @login_required
 def update_review(request, review_id):
     review = Review.objects.get(id=review_id)
     if request.method == "POST":
-        review_update = Review.objects.get(id=review_id)
-        form_review = CreateReviewForm(request.POST, request.FILES, instance=review_update)
-        if form_review.is_valid():
+        delete = request.POST.get("delete")
+        if delete:
+            review.delete()
             return render(request, "awebapp/posts.html")
+        else:
+            form_review = CreateReviewForm(request.POST, request.FILES, instance=review)
+            if form_review.is_valid():
+                form_review.save()
+                return render(request, "awebapp/posts.html")
+
     else:
-        form_review = CreateReviewForm(initial={
-            "user": request.user,
-            "title": review.title,
-            "image": review.image,
-        })
-    return render(request, "reviews/update-review.html", {"review": review, "form_review": form_review})
-        
+        form_review = CreateReviewForm(initial=review)
+    return render(
+        request,
+        "reviews/update-review.html",
+        {"review": review, "form_review": form_review},
+    )
+
+
 @login_required
 def update_ticket(request, ticket_id):
     ticket = Ticket.objects.get(id=ticket_id)
     if request.method == "POST":
         ticket_update = Review.objects.get(id=ticket_id)
-        form_ticket = CreateReviewForm(request.POST, request.FILES, instance=ticket_update)
+        form_ticket = CreateReviewForm(request.POST, request.FILES, instance=ticket)
         if form_ticket.is_valid():
             return render(request, "awebapp/posts.html")
     else:
-        form_review = CreateTicketForm(initial={
-            "user": request.user,
-            "title": ticket.title,
-            "image": ticket.image,
-            "description": ticket.description,
-        })
-    return render(request, "reviews/update-ticket.html", {"ticket": ticket, "form_ticket": form_ticket})
-    
-"""
-@login_required
-def create_review(request): #ticket_id):
-    form_review = CreateReviewForm()
-    form_ticket = CreateTicketForm()
-    if request.method == 'POST':
-        if form_review in request.POST:
-            form_review = CreateReviewForm(request.POST)
-            if form_review.is_valid():
-                form_review.save()
-                return redirect('/awebapp/flux')
-            
-    else:
-            form_review = CreateReviewForm(initial={"user": request.user})
-            return render(
-                request, "reviews/create-review.html", {"form_review": form_review}
-            )
-    return render(request, "reviews/create-review.html")
-"""
+        form_review = CreateTicketForm(
+            initial={
+                "user": request.user,
+                "title": ticket.title,
+                "image": ticket.image,
+                "description": ticket.description,
+            }
+        )
+    return render(
+        request,
+        "reviews/update-ticket.html",
+        {"ticket": ticket, "form_ticket": form_ticket},
+    )
 
 
 # livre / article doit être différencier dans les forms + model ??

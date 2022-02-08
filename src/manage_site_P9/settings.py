@@ -103,8 +103,6 @@ STATIC_URL = '/static/'
 
 STATIC_ROOT = 'static'
 
-MEDIA_URL = '/images/'
-
-MEDIA_ROOT = os.path.join(BASE_DIR, 'images')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'awebapp')
 
 LOGIN_REDIRECT_URL = '/reviews/flux'

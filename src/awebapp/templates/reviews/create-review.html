@@ -19,21 +19,20 @@
   </head>
 <div style="border: 2px solid white; margin: 20px">
     <h4 style="text-align: center">Créer une critique</h4>
-    <form method="post" enctype="multipart/form-data">
+    <form name="form_review" method="post" enctype="multipart/form-data">
         <div class="form-group">
             <div style="border: 2px solid white; margin: 20px">
             <div class="col-md-2 col-sm-2">
                 <h5>Livre / Artcile</h5>
           <label for="title"><h5>Titre</h5></label>
-          <input value="{{ form_ticket.title }}" type="title" class="form-control" id="title">
+          <input name="title" value="{{ form_ticket.title }}" type="title" class="form-control" id="title">
         </div>
         <div class="form-group">
           <label for="description"><h5>Description</h5></label>
-          <textarea class="form-control" value={{ form_ticket.description }} id="description"></textarea>
+          <textarea name="description" class="form-control" value={{ form_ticket.description }} id="description"></textarea>
         </div>
         <div class="custom-file">
-            <input type="hidden" value="{{ form_ticket.user }}">
-            <input value="{{ form_ticket.image }}" type="file" class="custom-file-input" id="image">
+            <input name="image" value="{{ form_ticket.image }}" type="file" class="custom-file-input" id="image">
             <label class="custom-file-label" for="customFile">Choose file</label>
           </div>
         </div>
@@ -41,35 +40,35 @@
             <div class="form-group">
             <div class="col-md-2 col-sm-2">
                 <h5>Critique</h5>
-          <label for="title"><h5>Titre</h5></label>
-          <input value="{{ form_review.headline }}" type="title" class="form-control" id="title">
+          <label for="headline"><h5>Titre</h5></label>
+          <input name="headline" type="title" class="form-control" id="headline">
         </div>
-        <div id="rating" name="rating" class="form-check form-check-inline">
+        <div id="rating" class="form-check form-check-inline">
             <div class="col-md-2 col-sm-2">
                 <h5>Note</h5>
             </div>
-            <input value="{{ form_review.rating }}" class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+            <input value="1" class="form-check-input" type="radio" name="rating" id="inlineRadio1">
             <label class="form-check-label" for="inlineRadio1">1</label>
           </div>
           <div class="form-check form-check-inline">
-            <input value="{{ form_review.rating }}" class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+            <input value="2" class="form-check-input" type="radio" name="rating" id="inlineRadio2" >
             <label class="form-check-label" for="inlineRadio2">2</label>
           </div>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
+            <input value="3" class="form-check-input" type="radio" name="rating" id="inlineRadio3">
             <label class="form-check-label" for="inlineRadio3">3</label>
           </div>
           <div class="form-check form-check-inline">
-            <input value="{{ form_review.rating }}" class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio4" value="option4">
+            <input value="4" class="form-check-input" type="radio" name="rating" id="inlineRadio4">
             <label class="form-check-label" for="inlineRadio4">4</label>
           </div>
           <div class="form-check form-check-inline">
-            <input value="{{ form_review.rating }}" class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio5" value="option5">
+            <input value="5" class="form-check-input" type="radio" name="rating" id="inlineRadio5">
             <label class="form-check-label" for="inlineRadio5">5</label>
           </div>
           <div class="form-group">
-            <label for="description" id="commentairereview"><h5>Commentaire</h5></label>
-            <textarea class="form-control" id="commentairereview"></textarea>
+            <label for="body" id="body"><h5>Commentaire</h5></label>
+            <textarea name="body" class="form-control" id="body"></textarea>
           </div>
           {% csrf_token %}
         <button class="btn btn-primary">Envoyer</button>
