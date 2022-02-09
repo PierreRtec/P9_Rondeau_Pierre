@@ -116,7 +116,6 @@ def create_ticket(request):
         )
     return render(request, "reviews/create-ticket.html")
 
-
 @login_required
 def create_review(request):
     if request.method == "POST":
@@ -146,6 +145,25 @@ def create_review(request):
 
 
 @login_required
+def create_review_ticket(request, id):
+    """Création d'une review en réponse à un ticket"""
+    if request.method == "POST":
+        ticket = Ticket.objects.get(id=id)
+        review = Review.objects.create(
+            headline=request.POST["headline"],
+            body=request.POST["body"],
+            user=request.user,
+            rating=request.POST["rating"],
+            ticket=ticket
+        )
+        review.save()
+        return render(request, "reviews/posts.html")
+    else:
+        ticket = Ticket.objects.get(id=id)
+        return render(request, "reviews/create-review-ticket.html", {"ticket": ticket})
+
+
+@login_required
 def update_review(request, review_id):
     review = Review.objects.get(id=review_id)
     if request.method == "POST":
@@ -161,7 +179,7 @@ def update_review(request, review_id):
 
     else:
         form_review = CreateReviewForm(initial=review)
-        return render(request, "reviews/posts.html")
+        return render(request, "awebapp/posts.html")
     return render(
         request,
         "reviews/update-review.html",
@@ -176,13 +194,12 @@ def update_ticket(request, ticket_id):
         delete = request.POST.get("delete")
         if delete:
             ticket.delete()
-            return render(request, "awebapp/posts.html")
+            return render(request, "reviews/posts.html")
         else:
-            form_ticket = CreateTicketForm(request.POST, request.FILES, instance=ticket)
+            form_ticket = CreateTicketForm(request.POST, request.FILES, initial=ticket)
             if form_ticket.is_valid():
-                form_ticket.save()
-                return render(request, "awebapp/posts.html")
-
+                ticket.save()
+                return render(request, "reviews/posts.html")
     else:
         form_ticket = CreateTicketForm(initial=ticket)
     return render(

@@ -22,28 +22,45 @@
         <div class="col col-lg-3">
             <a class="btn btn-lg btn-primary" href="http://127.0.0.1:8000/awebapp/create-ticket" role="button">Demander une critique</a>
         </div>
-        <div class="col-md-auto">
-            <a class="btn btn-lg btn-primary" href="http://127.0.0.1:8000/awebapp/create-review" role="button">Créer une critique</a>        
-        </div>
-        {% for ticket in tickets %}
-        <div class="row form-group p-2 justify-content-md-center" style="background-color: white; border-radius: 15px; padding: 5px">
-            <div style="border: 2px solid white; padding: 5px">
-                Vous avez publié un ticket
-                {{ ticket.title }}<br>
-                {{ ticket.description }}<br>
-                {{ ticket.user }}<br>
-                <img src="{{ ticket.image }}">
+            <div class="col-md-auto">
+                <a class="btn btn-lg btn-primary" href="http://127.0.0.1:8000/awebapp/create-review" role="button">Créer une critique</a>        
+            </div>
+            {% for ticket in tickets %}
+                {% if ticket.review.exists %}
+                <div style="border: 2px solid black;">
+                    Vous avez publié un ticket
+                    {{ ticket.title }}<br>
+                    {{ ticket.description }}<br>
+                    <img src="{{ ticket.image.url }}" widht="200px" height="200px"><br>
+                    {{ ticket.time_created }}<br>
+                    {% if ticket.review.exists %}
+                        {% else %}
+                            <a class="btn btn-secondary" href="http://127.0.0.1:8000/awebapp/create-review-ticket/{{ ticket.id }}" role="button">Répondre à un ticket</a> 
+                    {% endif %}
+                </div>
+                <br><hr>
+            {% endif %}
+        {% endfor %}
+        <br><hr><br>
+        {% for review in reviews %}
+            <div style="border: 2px solid black;">
+                Vous avez publié une critique<br>
+                {{ review.headline }} - {{ review.rating }}<br>
+                {{ review.body }}<br>
+                {{ review.time_created }}<br>
+                <div style="border: 2px solid black; margin: 30px">
+                    Ticket - {{ review.ticket.user }}<br>
+                    {{ review.ticket.title }}<br>
+                    {{ review.ticket.description }}<br>
+                    <img src="{{ ticket.image.url }}" widht="200px" height="200px"><br>
+                    {{ review.ticket.time_created }}<br>
                 </div>
             </div>
-            </div>
-        <div class="row form-group p-2">
+            <hr>
         {% endfor %}
-        </div>  
-
     </div>
-    </div>
-  </main>
+    </div>               
+</main>
 </body>
 </html>
 {% endblock %}
-

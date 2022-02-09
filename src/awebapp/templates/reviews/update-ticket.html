@@ -35,6 +35,9 @@
             <div>
                 <label>Titre</label><input name="title"><br>
                 <label>Description</label><input name="description"><br>
+                <img src="{{ ticket.image.url }}" widht="200px" height="200px"><br>
+                {{ form_ticket.image }}
+                {{ form_ticket.user.as_hidden }}
                 </div>
                 {% csrf_token %}
                 <button>Modifier</button>
@@ -43,6 +46,8 @@
         <form method="post" name="delete">
             <div class="form-group">
                 <input type="hidden" name="delete" value="delete">
+                {% csrf_token %}
+                <a href="http://127.0.0.1:8000/awebapp/posts/">
                 <button class="btn btn-primary" type="submit">Delete</button>
             </div>
         </form>
