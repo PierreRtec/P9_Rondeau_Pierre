@@ -19,7 +19,7 @@
 <body>
   <main role="main" class="container">
         <h1 style="text-align: center">Vos posts</h1>
-        <div style="border: 2px solid black; margin: 20px">
+        <div style="border: 2px solid white; margin: 20px">
             {% for ticket in tickets %}
                 <div>
                     Vous avez publié un ticket<br>
@@ -33,13 +33,13 @@
             {% endfor %}
             <br><br>
             {% for review in reviews %}
-                <div style="border: 2px solid black;">
+                <div style="border: 2px solid white;">
                     Vous avez publié une critique<br>
                     {{ review.headline }}<br>
                     {{ review.body }}<br>
                     {{ review.rating }}<br>
                     {{ review.time_created }}<br>
-                    <div style="border: 2px solid black; margin: 30px">
+                    <div style="border: 2px solid white; margin: 30px">
                         Ticket - Vous
                         {{ review.ticket.title }}<br>
                         {{ review.ticket.description }}<br>

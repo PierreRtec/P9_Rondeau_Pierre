@@ -27,9 +27,9 @@
             </div>
             {% for ticket in tickets %}
                 {% if ticket.review.exists %}
-                <div style="border: 2px solid black;">
+                <div style="border-radius: 10px; border: 2px solid white; background-color: white">
                     Vous avez publié un ticket
-                    {{ ticket.title }}<br>
+                    <h5>{{ ticket.title }}</h5><br>
                     {{ ticket.description }}<br>
                     <img src="{{ ticket.image.url }}" widht="200px" height="200px"><br>
                     {{ ticket.time_created }}<br>
@@ -43,14 +43,14 @@
         {% endfor %}
         <br><hr><br>
         {% for review in reviews %}
-            <div style="border: 2px solid black;">
-                Vous avez publié une critique<br>
-                {{ review.headline }} - {{ review.rating }}<br>
+            <div style="border-radius: 10px; border: 2px solid white; background-color: white">
+                <p>Vous avez publié une critique</p><br>
+                <h5>{{ review.headline }} - {{ review.rating }}</h5>
                 {{ review.body }}<br>
                 {{ review.time_created }}<br>
-                <div style="border: 2px solid black; margin: 30px">
+                <div class="col p-3" style="border-radius: 10px; border: 2px solid white; margin: 15px; background-color:lightgray;color:#444444">
                     Ticket - {{ review.ticket.user }}<br>
-                    {{ review.ticket.title }}<br>
+                    <h5>{{ review.ticket.title }}</h5><br>
                     {{ review.ticket.description }}<br>
                     <img src="{{ ticket.image.url }}" widht="200px" height="200px"><br>
                     {{ review.ticket.time_created }}<br>
@@ -59,7 +59,7 @@
             <hr>
         {% endfor %}
     </div>
-    </div>               
+  </div>               
 </main>
 </body>
 </html>
