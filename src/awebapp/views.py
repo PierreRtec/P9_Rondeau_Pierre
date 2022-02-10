@@ -172,16 +172,16 @@ def update_review(request, review_id):
         delete = request.POST.get("delete")
         if delete:
             review.delete()
-            return render(request, "awebapp/posts.html")
+            return render(request, "reviews/posts.html")
         else:
             form_review = CreateReviewForm(request.POST, request.FILES, initial=review)
             if form_review.is_valid():
                 form_review.save()
-                return render(request, "awebapp/posts.html")
+                return render(request, "reviews/posts.html")
 
     else:
         form_review = CreateReviewForm(initial=review)
-        return render(request, "awebapp/posts.html")
+        return render(request, "reviews/posts.html")
     return render(
         request,
         "reviews/update-review.html",

@@ -31,7 +31,7 @@
             </div>
         </div>
         <br><hr><br>
-        <form name="update-review" method="post">
+        <form  enctype="multipart/form-data" name="update-review" method="post">
             <div>
                 <label>Titre</label><input name="headline"><br>
                 <label>Commentaire</label><input name="body"><br>
@@ -40,7 +40,7 @@
                 <button>Modifier</button>
             </div>
         </form>
-        <form method="post" name="delete">
+        <form  enctype="multipart/form-data" method="post" name="delete">
             <div class="form-group">
                 <input type="hidden" name="delete" value="delete">
                 <button class="btn btn-primary" type="submit">Delete</button>

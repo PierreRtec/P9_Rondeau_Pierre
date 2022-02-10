@@ -31,7 +31,7 @@
             </div>
         </div>
         <br><hr><br>
-        <form name="update-ticket" method="post">
+        <form enctype="multipart/form-data" method="post" name="ticket_update">
             <div>
                 <label>Titre</label><input name="title"><br>
                 <label>Description</label><input name="description"><br>
@@ -40,10 +40,10 @@
                 {{ form_ticket.user.as_hidden }}
                 </div>
                 {% csrf_token %}
-                <button>Modifier</button>
+                <button type="submit" class="btn btn-secondary">Envoyer</button>
             </div>
         </form>
-        <form method="post" name="delete">
+        <form enctype="multipart/form-data" method="post" name="delete">
             <div class="form-group">
                 <input type="hidden" name="delete" value="delete">
                 {% csrf_token %}

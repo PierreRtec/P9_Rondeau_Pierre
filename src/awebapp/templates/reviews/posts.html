@@ -45,7 +45,7 @@
                         {{ review.ticket.description }}<br>
                         <img src="{{ review.ticket.image.url }}" widht="200px" height="200px"><br>
                         {{ review.ticket.time_created }}<br>
-                        <a href="http://127.0.0.1:8000/awebapp/update-review/{{ ticket.id }}"><button>Modifier la critique</button></a>
+                        <a href="http://127.0.0.1:8000/awebapp/update-review/{{ review.id }}"><button>Modifier la critique</button></a>
                     </div>
                 </div>
                 {% endfor %}
