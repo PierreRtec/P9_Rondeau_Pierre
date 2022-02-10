@@ -90,7 +90,9 @@ def abos(request):
             UserFollows.objects.get(
                 user=request.user, followed_user=followed_user
             ).delete()
+    # abonnés
     followers = UserFollows.objects.filter(followed_user=request.user)
+    # abonnements
     followed = UserFollows.objects.filter(user=request.user)
     return render(
         request, "reviews/abos.html", {"followers": followers, "followed": followed}

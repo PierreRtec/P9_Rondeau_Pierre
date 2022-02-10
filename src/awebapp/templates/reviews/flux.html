@@ -27,16 +27,17 @@
             </div>
             {% for ticket in tickets %}
                 {% if ticket.review.exists %}
-                <div style="border-radius: 10px; border: 2px solid white; background-color: white">
-                    Vous avez publié un ticket
-                    <h5>{{ ticket.title }}</h5><br>
-                    {{ ticket.description }}<br>
-                    <img src="{{ ticket.image.url }}" widht="200px" height="200px"><br>
-                    {{ ticket.time_created }}<br>
-                    {% if ticket.review.exists %}
+                {% else %}
+                    <div style="border-radius: 10px; border: 2px solid white; background-color: white">
+                        Vous avez publié un ticket
+                        <h5>{{ ticket.title }}</h5><br>
+                        {{ ticket.description }}<br>
+                        <img src="{{ ticket.image.url }}" widht="200px" height="200px"><br>
+                        {{ ticket.time_created }}<br>
+                        {% if ticket.review.exists %}
                         {% else %}
                             <a class="btn btn-secondary" href="http://127.0.0.1:8000/awebapp/create-review-ticket/{{ ticket.id }}" role="button">Répondre à un ticket</a> 
-                    {% endif %}
+                        {% endif %}
                 </div>
                 <br><hr>
             {% endif %}

@@ -32,13 +32,13 @@
         </div>
     <div>
         <h4>Abonnements</h4>
-        {% for user in followed %}
+        {% for followed in followed %}
             <div class="row">
                 <div style="color: orange">
-                    <h5 style="text-align: left">{{ user.followed_user.username }}</h5>
+                    <h5 style="text-align: left">{{ followed.followed_user }}</h5>
                 </div>
                 <form method="post">
-                    <input type="hidden" name="followed_user" value="{{ user.followed_user.id }}">
+                    <input type="hidden" name="followed_user" value="{{ followed.followed_user.id }}">
                     {% csrf_token %}
                     <button class="btn btn-large btn-primary">Se désabonner</button>
                 </form>
@@ -47,16 +47,13 @@
     </div>
     <div>
         <h4>Abonnés</h4>
-        {% for user in followed %}
-        <div class="row">
-            <div style="color: blue; margin-left: 50px; width: 1200px">
-                <h5 style="text-align: left">{{ user.followed_user.username }}</h5>
-                {% csrf_token %}
-                <input type="hidden" name="followers" value="{{ user.followed_user.id }}">
+        {% for followers in followers %}
+            <div class="row">
+                <div style="color: blue; margin-left: 50px; width: 1200px">
+                    <h5 style="text-align: left">{{ followers.user }}</h5>
             </div>
         {% endfor %}
     </div>
-</div>
 </html>
 </body>
 {% endblock %}
