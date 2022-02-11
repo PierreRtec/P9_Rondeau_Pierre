@@ -198,7 +198,9 @@ def update_ticket(request, ticket_id):
             return render(request, "reviews/posts.html")
         else:
             form_ticket = CreateTicketForm(request.POST, request.FILES, initial=ticket)
-            if request.method == "POST":
+            if form_ticket.is_valid():
+                ticket.title=request.POST["title"],
+                ticket.description=request.POST["description"],
                 ticket.save()
                 return render(request, "reviews/posts.html")
     else:
