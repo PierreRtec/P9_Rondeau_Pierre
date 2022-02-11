@@ -177,8 +177,12 @@ def update_review(request, review_id):
         else:
             form_review = CreateReviewForm(request.POST, request.FILES, initial=review)
             if request.method == "POST":
-                review.save()
-                return render(request, "reviews/posts.html")
+                if form_review.is_valid():
+                    review.headline=request.POST["headline"],
+                    review.body=request.POST["body"],
+                    review.rating=request.POST["rating"],
+                    review.save()
+                    return render(request, "reviews/posts.html")
     else:
         form_review = CreateReviewForm(initial=review)
     return render(

@@ -34,8 +34,8 @@
         <form enctype="multipart/form-data" method="post" name="update">
             <div class="form-group">
                 <div>
-                <label>{{ ticket.title }}</label><input name="title"><br>
-                <label>{{ ticket.description }}</label><input name="description"><br>
+                <h5>{{ ticket.title }}</h5><input name="title"><br>
+                <p>{{ ticket.description }}</p><input name="description"><br>
                 <img src="{{ ticket.image.url }}" widht="200px" height="200px"><br>
                 {{ form_ticket.image }}<br>
                 <div class="custom-file">
