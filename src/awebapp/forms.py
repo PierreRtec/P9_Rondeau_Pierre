@@ -26,6 +26,12 @@ class CreateTicketForm(forms.Form):
     class Meta:
         model = Ticket
         fields = ["title", "description", "image", "user"]
+
+
+class CreateReviewForm(forms.Form):
+    class Meta:
+        model = Review
+        fields = ["headline", "body", "rating", "ticket", "user"]
         rating = forms.ChoiceField(
             widget=forms.RadioSelect,
             choices=[
@@ -36,9 +42,3 @@ class CreateTicketForm(forms.Form):
                 ("5", "Cinq étoiles"),
             ],
         )
-
-
-class CreateReviewForm(forms.Form):
-    class Meta:
-        model = Review
-        fields = ["headline", "body", "rating", "ticket", "user"]

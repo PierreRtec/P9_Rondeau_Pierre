@@ -6,13 +6,15 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('awebapp', '0002_review_userfollows_remove_choice_question_and_more'),
+        ("awebapp", "0002_review_userfollows_remove_choice_question_and_more"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='ticket',
-            name='image',
-            field=models.ImageField(blank=True, null=True, upload_to='static/awebapp/images/'),
+            model_name="ticket",
+            name="image",
+            field=models.ImageField(
+                blank=True, null=True, upload_to="static/awebapp/images/"
+            ),
         ),
     ]

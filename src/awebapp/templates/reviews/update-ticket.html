@@ -31,16 +31,23 @@
             </div>
         </div>
         <br><hr><br>
-        <form enctype="multipart/form-data" method="post" name="ticket_update">
-            <div>
-                <label>Titre</label><input name="title"><br>
-                <label>Description</label><input name="description"><br>
+        <form enctype="multipart/form-data" method="post" name="update">
+            <div class="form-group">
+                <div>
+                <label>{{ ticket.title }}</label><input name="title"><br>
+                <label>{{ ticket.description }}</label><input name="description"><br>
                 <img src="{{ ticket.image.url }}" widht="200px" height="200px"><br>
-                {{ form_ticket.image }}
+                {{ form_ticket.image }}<br>
+                <div class="custom-file">
+                    <input name="image" value="{{ form_ticket.image }}" type="file" class="custom-file-input" id="image">
+                  </div>
                 {{ form_ticket.user.as_hidden }}
                 </div>
+                <input type="hidden" name="update" value="update">
                 {% csrf_token %}
-                <button type="submit" class="btn btn-secondary">Envoyer</button>
+                <a href="http://127.0.0.1:8000/awebapp/posts/">
+                <button class="btn btn-primary" type="submit">Envoyer</button>
+                </div>
             </div>
         </form>
         <form enctype="multipart/form-data" method="post" name="delete">
@@ -48,7 +55,7 @@
                 <input type="hidden" name="delete" value="delete">
                 {% csrf_token %}
                 <a href="http://127.0.0.1:8000/awebapp/posts/">
-                <button class="btn btn-primary" type="submit">Delete</button>
+                <button class="btn btn-danger" type="submit">Delete</button>
             </div>
         </form>
     </div>

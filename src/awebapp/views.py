@@ -118,6 +118,7 @@ def create_ticket(request):
         )
     return render(request, "reviews/create-ticket.html")
 
+
 @login_required
 def create_review(request):
     if request.method == "POST":
@@ -156,7 +157,7 @@ def create_review_ticket(request, id):
             body=request.POST["body"],
             user=request.user,
             rating=request.POST["rating"],
-            ticket=ticket
+            ticket=ticket,
         )
         review.save()
         return render(request, "reviews/posts.html")
@@ -175,13 +176,11 @@ def update_review(request, review_id):
             return render(request, "reviews/posts.html")
         else:
             form_review = CreateReviewForm(request.POST, request.FILES, initial=review)
-            if form_review.is_valid():
-                form_review.save()
+            if request.method == "POST":
+                review.save()
                 return render(request, "reviews/posts.html")
-
     else:
         form_review = CreateReviewForm(initial=review)
-        return render(request, "reviews/posts.html")
     return render(
         request,
         "reviews/update-review.html",
@@ -199,7 +198,7 @@ def update_ticket(request, ticket_id):
             return render(request, "reviews/posts.html")
         else:
             form_ticket = CreateTicketForm(request.POST, request.FILES, initial=ticket)
-            if form_ticket.is_valid():
+            if request.method == "POST":
                 ticket.save()
                 return render(request, "reviews/posts.html")
     else:
@@ -209,6 +208,7 @@ def update_ticket(request, ticket_id):
         "reviews/update-ticket.html",
         {"ticket": ticket, "form_ticket": form_ticket},
     )
+
 
 # livre / article doit être différencier dans les forms + model ??
 # comment mettre tout dans la même class -> upload / update / delete ??
