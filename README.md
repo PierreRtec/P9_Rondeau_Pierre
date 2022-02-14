@@ -88,14 +88,14 @@ créer un fichier qui s'appelle "setup.cfg"
 
 mettre dedans : 
 
-[flake8]
+[flake8] 
 exclude =
-	.git,
-	env,
-	__pycache__,
-	ajout_liste_joueur.py,
-	models/__pycache
-	test.py
+        .git,
+        env,
+        pycache,
+        __pycache
+        tests.py
+        migrations/__migrations
 
 max-line-length = 119
 
