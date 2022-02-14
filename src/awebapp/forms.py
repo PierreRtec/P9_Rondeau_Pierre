@@ -1,7 +1,5 @@
 from django import forms
-from django.forms import Form
 from awebapp.models import User, UserFollows, Ticket, Review
-from django.core.validators import MaxValueValidator
 
 
 class User(forms.Form):

@@ -1,11 +1,6 @@
-import re
-from django.http import HttpResponseRedirect
-from django.shortcuts import get_object_or_404, render, redirect
-from django.urls import reverse
-from django.views import generic
+from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
-from awebapp.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.hashers import make_password
 from awebapp.forms import CreateReviewForm, CreateTicketForm
@@ -79,7 +74,7 @@ def abos(request):
         if username:
             try:
                 user = User.objects.get(username=username)
-            except:
+            except Exception:
                 return render(
                     request,
                     "reviews/abos.html",
@@ -178,9 +173,9 @@ def update_review(request, review_id):
             form_review = CreateReviewForm(request.POST, request.FILES, initial=review)
             if request.method == "POST":
                 if form_review.is_valid():
-                    review.headline=request.POST["headline"],
-                    review.body=request.POST["body"],
-                    review.rating=request.POST["rating"],
+                    review.headline = (request.POST["headline"],)
+                    review.body = (request.POST["body"],)
+                    review.rating = (request.POST["rating"],)
                     review.save()
                     return render(request, "reviews/posts.html")
     else:
@@ -203,8 +198,8 @@ def update_ticket(request, ticket_id):
         else:
             form_ticket = CreateTicketForm(request.POST, request.FILES, initial=ticket)
             if form_ticket.is_valid():
-                ticket.title=request.POST["title"],
-                ticket.description=request.POST["description"],
+                ticket.title = (request.POST["title"],)
+                ticket.description = (request.POST["description"],)
                 ticket.save()
                 return render(request, "reviews/posts.html")
     else:

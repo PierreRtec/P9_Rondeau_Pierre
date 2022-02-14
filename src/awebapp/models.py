@@ -1,12 +1,6 @@
-from nturl2path import url2pathname
-from django.contrib import admin
 from django.db import models
-import datetime
-from django.utils import timezone
-from manage_site_P9 import settings
 from django.contrib.auth.models import AbstractUser
 from django.core.validators import MinValueValidator, MaxValueValidator
-from django.core.exceptions import ValidationError
 
 
 class User(AbstractUser):

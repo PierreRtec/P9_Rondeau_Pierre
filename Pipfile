@@ -7,6 +7,8 @@ name = "pypi"
 django = "*"
 black = "*"
 django-bootstrap-v5 = "*"
+flake8 = "*"
+flake8-html = "*"
 
 [dev-packages]
 
