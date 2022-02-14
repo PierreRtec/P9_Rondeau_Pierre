@@ -23,14 +23,14 @@
             <h4>Suivre d'autres utilisateurs</h4>
             <form method="post">
                 {% csrf_token %}
-                <div class="row" style="margin-left: 600px">
+                <div class="row mw w-25" style="center; border-radius: 5px;">
                     <input name="username_search" id="username_search" placeholder="Nom d'utilisateur">
                     <span style="color: white" class="input-group-btn">{{erreur}}</span>
                     <button id="button_search" class="btn btn-large btn-primary">Envoyer</button>
                 </div>
             </form>
         </div>
-    <div>
+    <div class="row p-3 w-25" style="border-radius: 5px; background-color: lightgray">
         <h4>Abonnements</h4>
         {% for followed in followed %}
             <div class="row">
@@ -44,12 +44,11 @@
                 </form>
             </div>
         {% endfor %}
-    </div>
-    <div>
+        <div class="row"><hr><br>
         <h4>Abonnés</h4>
         {% for followers in followers %}
             <div class="row">
-                <div style="color: blue; margin-left: 50px; width: 1200px">
+                <div style="color: blue">
                     <h5 style="text-align: left">{{ followers.user }}</h5>
             </div>
         {% endfor %}
