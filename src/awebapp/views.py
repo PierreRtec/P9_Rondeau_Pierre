@@ -214,9 +214,3 @@ def update_ticket(request, ticket_id):
         "reviews/update-ticket.html",
         {"ticket": ticket, "form_ticket": form_ticket},
     )
-
-
-# livre / article doit être différencier dans les forms + model ??
-# comment mettre tout dans la même class -> upload / update / delete ??
-# faire la creation d'une review en réponse d'un ticket également
-# bien gérer l'affichage des images.

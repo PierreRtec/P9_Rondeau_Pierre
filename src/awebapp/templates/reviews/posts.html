@@ -19,33 +19,34 @@
 <body>
   <main role="main" class="container">
         <h1 style="text-align: center">Vos posts</h1>
-        <div style="border: 2px solid white; margin: 20px">
+        <div style="border-radius: 5px; margin: 15px;">
             {% for ticket in tickets %}
-                <div>
-                    Vous avez publié un ticket<br>
-                    {{ ticket.title }}<br>
-                    {{ ticket.description }}<br>
+                <div class="col p-3" style="border-radius: 10px; background-color: white">
+                    <p>Vous avez publié un ticket</p><br>
+                    <h5>{{ ticket.title }}</h5><br>
+                    <p>{{ ticket.description }}</p><br>
                     <img src="{{ ticket.image.url }}" widht="200px" height="200px"><br>
                     {{ ticket.time_created }}<br>
-                    <a href="http://127.0.0.1:8000/awebapp/update-ticket/{{ ticket.id }}"><button>Modifier le ticket</button></a>
+                    <a href="http://127.0.0.1:8000/awebapp/update-ticket/{{ ticket.id }}"><button class="btn btn-primary">Modifier le ticket</button></a>
                 </div>
-                <br>
+            </div>
+            <br>
             {% endfor %}
             <br><br>
             {% for review in reviews %}
-                <div style="border: 2px solid white;">
-                    Vous avez publié une critique<br>
-                    {{ review.headline }}<br>
-                    {{ review.body }}<br>
-                    {{ review.rating }}<br>
-                    {{ review.time_created }}<br>
-                    <div style="border: 2px solid white; margin: 30px">
-                        Ticket - Vous
-                        {{ review.ticket.title }}<br>
-                        {{ review.ticket.description }}<br>
+            <div class="col p-3" style="border-radius: 10px; border: 2px solid white; background-color: white; margin: 15px; ">
+                    <p>Vous avez publié une critique<p><br>
+                    <h5>{{ review.headline }}</h5><br>
+                    <p>{{ review.body }}</p><br>
+                    <p>{{ review.rating }}</p><br>
+                    <p>{{ review.time_created }}</p><br>
+                    <div class="col p-5" style="border-radius: 10px; border: 2px solid white; background-color:lightgray;color:#444444; margin: 30px">
+                        <p>Ticket - Vous</p>
+                        <h5>{{ review.ticket.title }}</h5><br>
+                        <p>{{ review.ticket.description }}</p><br>
                         <img src="{{ review.ticket.image.url }}" widht="200px" height="200px"><br>
-                        {{ review.ticket.time_created }}<br>
-                        <a href="http://127.0.0.1:8000/awebapp/update-review/{{ review.id }}"><button>Modifier la critique</button></a>
+                        <p>{{ review.ticket.time_created }}</p><br>
+                        <a href="http://127.0.0.1:8000/awebapp/update-review/{{ review.id }}"><button class="btn btn-primary">Modifier la critique</button></a>
                     </div>
                 </div>
                 {% endfor %}
