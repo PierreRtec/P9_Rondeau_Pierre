@@ -20,13 +20,13 @@
     <main role="main" class="container">
       <div class="row" align="center">
     <h4 style="text-align: center">Modifier votre ticket</h4>
-    <div style="border: 2px solid white; margin: 20px">
+    <div style="color: white; border-radius: 10px; border: 2px solid white; margin: 20px">
         <div>
-            <h5>Vous êtes en train de poster en réponse à:</h5>
-            <div style="border: 1px solid white; margin: 30px">
-                {{ ticket.user }} a demandé une critique<br>
-                {{ ticket.title }}<br>
-                {{ ticket.description }}<br>
+            <h5>Vous êtes en train de poster en réponse à :</h5>
+            <div style="border-radius: 10px; border: 1px solid white; margin: 30px">
+                <p>{{ ticket.user }} a demandé une critique</p><br>
+                <h5>{{ ticket.title }}</h5><br>
+                <p>{{ ticket.description }}</p><br>
                 <img src="{{ review.ticket.image.url }}" widht="200px" height="200px"><br>
             </div>
         </div>

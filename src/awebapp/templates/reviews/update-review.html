@@ -20,13 +20,13 @@
     <main role="main" class="container">
       <div class="row" align="center">
         <h4 style="text-align: center">Gestion</h4>
-        <div style="border: 2px solid black; margin: 20px">
+        <div style="boder-radius: 10px; border: 2px solid white; background-color: white; margin: 20px">
             <div>
-                <h5>Vous êtes en train de modifier:</h5>
-                    <div style="border: 2px solid black; margin: 30px">
-                        {{ review.ticket.user }} a posté une critique<br>
-                        {{ review.ticket.title }}<br>
-                        {{ review.ticket.description }}<br>
+                <h5>Vous êtes en train de modifier :</h5>
+                    <div style="border-radius: 10px; border: 2px solid white; background-color: lightgray; margin: 30px">
+                        <p>{{ review.ticket.user }} a posté une critique</p><br>
+                        <h5>{{ review.ticket.title }}</h5><br>
+                        <p>{{ review.ticket.description }}</p><br>
                         <img src="{{ review.ticket.image.url }}" widht="200px" height="200px"><br>
                     </div>
                 </div>
@@ -34,14 +34,14 @@
                 <form enctype="multipart/form-data" method="post" name="update">
                     <div class="form-group">
                         <div>
-                        <h5>{{ review.headline }}</h5><input name="headline"><br>
-                        <p>{{ review.body }}</p><input name="body"><br>
+                        <h5>{{ review.headline }}</h5><input name="headline" placeholder="modifiez le titre"><br>
+                        <p>{{ review.body }}</p><input name="body" placeholder="modifiez la description"><br>
                         <img src="{{ review.ticket.image.url }}" widht="200px" height="200px"><br>
                         {{ form_ticket.image }}<br>
                         <div class="custom-file">
                             <input name="image" value="{{ form_ticket.image }}" type="file" class="custom-file-input" id="image">
                         </div>
-                        <label>Note (0-5): {{ form_review.rating }}<input type="number" min="0" max="5" name="rating"></label>
+                        <label>Note (0-5): {{ form_review.rating }}<input placeholder="ex: 5" type="number" min="0" max="5" id="rating"></label>
                         {{ form_ticket.user.as_hidden }}
                         </div>
                         <input type="hidden" name="update" value="update">
