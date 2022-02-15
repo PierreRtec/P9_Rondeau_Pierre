@@ -50,12 +50,14 @@ def signup(request):
 
 @login_required
 def flux(request):
-    user_id = request.user.id
-    subscriptions = [user.followed_user.id for user in UserFollows.objects.filter(user=user_id)]
-    subscriptions.append(user_id)
-    tickets = Ticket.objects.filter()
-    reviews = Review.objects.filter()
-    result = sorted(chain(reviews, tickets), key=lambda post: post.time_created, reverse=True)
+    followed_user = [
+    follow.followed_user for follow in UserFollows.objects.filter(user=request.user)
+    ]
+    followed_user.append(request.user)
+
+    tickets = Ticket.objects.filter(user__in=followed_user)
+    reviews = Review.objects.filter(user__in=followed_user)
+    result = sorted(chain(reviews, tickets), key=lambda ticket: ticket.time_created, reverse=True)
     print(result)
     return render(
         request, "reviews/flux.html", {"result": result}
