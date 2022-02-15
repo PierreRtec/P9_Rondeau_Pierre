@@ -34,6 +34,7 @@
                         {{ element.description }}<br>
                         <img src="{{ element.image.url }}" widht="200px" height="200px"><br>
                         {{ element.time_created }}<br>
+                        <p> par : {{ element.user }}</p><br>
                         {% if element.review.exists %}
                         {% else %}
                             <a class="btn btn-secondary" href="http://127.0.0.1:8000/awebapp/create-review-ticket/{{ element.id }}" role="button">Répondre à un ticket</a> 
@@ -46,12 +47,14 @@
                     <h5>{{ element.headline }} - {{ element.rating }}</h5>
                     {{ element.body }}<br>
                     {{ element.time_created }}<br>
+                    {{ username }}<br>
                     <div class="col p-3" style="border-radius: 10px; border: 2px solid white; margin: 15px; background-color:lightgray;color:#444444">
                         Ticket - {{ element.ticket.user }}<br>
                         <h5>{{ element.ticket.title }}</h5><br>
                         {{ element.ticket.description }}<br>
                         <img src="{{ review.ticket.image.url }}" widht="200px" height="200px"><br>
                         {{ element.ticket.time_created }}<br>
+                        <p> par :{{ element.ticket.user }}</p><br>
                     </div>
                 </div>
                 <hr>
