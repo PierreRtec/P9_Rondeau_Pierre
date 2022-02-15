@@ -50,8 +50,9 @@ def signup(request):
 
 @login_required
 def flux(request):
-    tickets = Ticket.objects.all()
-    reviews = Review.objects.all()
+    user_id = request.user.id
+    tickets = Ticket.objects.filter(user=user_id)
+    reviews = Review.objects.filter(user=user_id)
     result = sorted(chain(reviews, tickets), key=lambda post: post.time_created, reverse=True)
     print(result)
     return render(
