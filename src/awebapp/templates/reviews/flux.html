@@ -26,40 +26,38 @@
             <div class="col-md-auto">
                 <a class="btn btn-lg btn-primary" href="http://127.0.0.1:8000/awebapp/create-review" role="button">Créer une critique</a>        
             </div>
-            {% for ticket in tickets %}
-                {% if ticket.review.exists %}
-                {% else %}
+            {% for element in result %}
+                {% if element.review %}
                     <div style="border-radius: 10px; border: 2px solid white; background-color: white">
                         demande de critique
-                        <h5>{{ ticket.title }}</h5><br>
-                        {{ ticket.description }}<br>
-                        <img src="{{ ticket.image.url }}" widht="200px" height="200px"><br>
-                        {{ ticket.time_created }}<br>
-                        {% if ticket.review.exists %}
+                        <h5>{{ element.title }}</h5><br>
+                        {{ element.description }}<br>
+                        <img src="{{ element.image.url }}" widht="200px" height="200px"><br>
+                        {{ element.time_created }}<br>
+                        {% if element.review.exists %}
                         {% else %}
-                            <a class="btn btn-secondary" href="http://127.0.0.1:8000/awebapp/create-review-ticket/{{ ticket.id }}" role="button">Répondre à un ticket</a> 
+                            <a class="btn btn-secondary" href="http://127.0.0.1:8000/awebapp/create-review-ticket/{{ element.id }}" role="button">Répondre à un ticket</a> 
                         {% endif %}
+                    </div>
+                    <br><hr>
+                {% else %}
+                <div style="border-radius: 10px; border: 2px solid white; background-color: white">
+                    <p>Critique</p><br>
+                    <h5>{{ element.headline }} - {{ element.rating }}</h5>
+                    {{ element.body }}<br>
+                    {{ element.time_created }}<br>
+                    <div class="col p-3" style="border-radius: 10px; border: 2px solid white; margin: 15px; background-color:lightgray;color:#444444">
+                        Ticket - {{ element.ticket.user }}<br>
+                        <h5>{{ element.ticket.title }}</h5><br>
+                        {{ element.ticket.description }}<br>
+                        <img src="{{ review.ticket.image.url }}" widht="200px" height="200px"><br>
+                        {{ element.ticket.time_created }}<br>
+                    </div>
                 </div>
-                <br><hr>
-            {% endif %}
-        {% endfor %}
+                <hr>
+                {% endif %}
+            {% endfor %} 
         <br><hr><br>
-        {% for review in reviews %}
-            <div style="border-radius: 10px; border: 2px solid white; background-color: white">
-                <p>Critique</p><br>
-                <h5>{{ review.headline }} - {{ review.rating }}</h5>
-                {{ review.body }}<br>
-                {{ review.time_created }}<br>
-                <div class="col p-3" style="border-radius: 10px; border: 2px solid white; margin: 15px; background-color:lightgray;color:#444444">
-                    Ticket - {{ review.ticket.user }}<br>
-                    <h5>{{ review.ticket.title }}</h5><br>
-                    {{ review.ticket.description }}<br>
-                    <img src="{{ review.ticket.image.url }}" widht="200px" height="200px"><br>
-                    {{ review.ticket.time_created }}<br>
-                </div>
-            </div>
-            <hr>
-        {% endfor %}
     </div>
   </div>               
 </main>

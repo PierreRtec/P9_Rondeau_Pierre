@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.hashers import make_password
 from awebapp.forms import CreateReviewForm, CreateTicketForm
 from awebapp.models import User, Ticket, UserFollows, Review
-
+from itertools import chain
 
 def homepage(request):
     if request.method == "POST":
@@ -50,10 +50,12 @@ def signup(request):
 
 @login_required
 def flux(request):
-    tickets = Ticket.objects.all
-    reviews = Review.objects.all
+    tickets = Ticket.objects.all()
+    reviews = Review.objects.all()
+    result = sorted(chain(reviews, tickets), key=lambda post: post.time_created, reverse=True)
+    print(result)
     return render(
-        request, "reviews/flux.html", {"tickets": tickets, "reviews": reviews}
+        request, "reviews/flux.html", {"result": result}
     )
 
 
@@ -173,9 +175,9 @@ def update_review(request, review_id):
             form_review = CreateReviewForm(request.POST, request.FILES, initial=review)
             if request.method == "POST":
                 if form_review.is_valid():
-                    review.headline = (request.POST["headline"],)
-                    review.body = (request.POST["body"],)
-                    review.rating = (request.POST["rating"],)
+                    review.headline = request.POST["headline"]
+                    review.body = request.POST["body"]
+                    review.rating = request.POST["rating"]
                     review.save()
                     return render(request, "reviews/posts.html")
     else:
@@ -198,8 +200,8 @@ def update_ticket(request, ticket_id):
         else:
             form_ticket = CreateTicketForm(request.POST, request.FILES, initial=ticket)
             if form_ticket.is_valid():
-                ticket.title = (request.POST["title"],)
-                ticket.description = (request.POST["description"],)
+                ticket.title = request.POST["title"]
+                ticket.description = request.POST["description"]
                 ticket.save()
                 return render(request, "reviews/posts.html")
     else:
