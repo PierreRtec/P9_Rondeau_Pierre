@@ -41,7 +41,7 @@
                         <div class="custom-file">
                             <input name="image" value="{{ form_ticket.image }}" type="file" class="custom-file-input" id="image">
                         </div>
-                        <label>Note (0-5): {{ form_review.rating }}<input placeholder="ex: 5" name="rating" type="number" min="0" max="5" id="rating"></label>
+                        <label>Note (0-5): {{ form_review.rating }} ★<input placeholder="ex: 5" name="rating" type="number" min="0" max="5" id="rating"></label>
                         {{ form_ticket.user.as_hidden }}
                         </div>
                         <input type="hidden" name="update" value="update">
