@@ -19,6 +19,8 @@ Dans votre terminal :
 
 > pipenv install
 
+> pipenv sync
+
 ### Pour plus de précisions : https://pypi.org/project/pipenv/
 ---
 
