@@ -4,7 +4,7 @@
 
 ## Git Clone repository
 
-> git clone https://github.com/PierreRtech/P9_Rondeau_Pierre
+$ git clone https://github.com/PierreRtec/P9_Rondeau_Pierre
 
 - Python 3.10
 - Environnement virtuel
