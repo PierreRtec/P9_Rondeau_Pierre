@@ -7,6 +7,7 @@ from awebapp.forms import CreateReviewForm, CreateTicketForm
 from awebapp.models import User, Ticket, UserFollows, Review
 from itertools import chain
 
+
 def homepage(request):
     if request.method == "POST":
         username = request.POST.get("username")
@@ -44,6 +45,7 @@ def signup(request):
             user = User.objects.create(
                 username=username, password=make_password(password)
             )
+            # corriger user
             return redirect("/awebapp/login")
     return render(request, "users/signup.html")
 
@@ -51,17 +53,16 @@ def signup(request):
 @login_required
 def flux(request):
     followed_user = [
-    follow.followed_user for follow in UserFollows.objects.filter(user=request.user)
+        follow.followed_user for follow in UserFollows.objects.filter(user=request.user)
     ]
     followed_user.append(request.user)
 
     tickets = Ticket.objects.filter(user__in=followed_user)
     reviews = Review.objects.filter(user__in=followed_user)
-    result = sorted(chain(reviews, tickets), key=lambda ticket: ticket.time_created, reverse=True)
-    print(result)
-    return render(
-        request, "reviews/flux.html", {"result": result}
+    result = sorted(
+        chain(reviews, tickets), key=lambda ticket: ticket.time_created, reverse=True
     )
+    return render(request, "reviews/flux.html", {"result": result})
 
 
 @login_required
