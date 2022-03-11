@@ -181,6 +181,7 @@ def update_review(request, review_id):
             form_review = CreateReviewForm(request.POST, request.FILES, initial=review)
             if request.method == "POST":
                 if form_review.is_valid():
+                    review.image = request.FILES["image"]
                     review.headline = request.POST["headline"]
                     review.body = request.POST["body"]
                     review.rating = request.POST["rating"]
@@ -206,6 +207,7 @@ def update_ticket(request, ticket_id):
         else:
             form_ticket = CreateTicketForm(request.POST, request.FILES, initial=ticket)
             if form_ticket.is_valid():
+                ticket.image = request.FILES["image"]
                 ticket.title = request.POST["title"]
                 ticket.description = request.POST["description"]
                 ticket.save()
