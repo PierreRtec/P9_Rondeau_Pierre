@@ -42,14 +42,10 @@ def signup(request):
         username = request.POST.get("username")
         password = request.POST.get("password")
         if password == request.POST.get("password_confirm"):
-<<<<<<< HEAD
             user = User.objects.create(
                 username=username, password=make_password(password)
             )
             # corriger user
-=======
-            User.objects.create(username=username, password=make_password(password))
->>>>>>> 834b718d5d022fba58c8fb7991c766e84376e8e0
             return redirect("/awebapp/login")
     return render(request, "users/signup.html")
 
